@@ -1,0 +1,348 @@
+---
+alwaysApply: true
+
+
+# 🧠 **ML Engineer Roadmap — Project Rules**
+
+> Interactive, bilingual (EN/TR) learning platform for AI/ML engineers.
+> Built with Next.js + Supabase + Prisma + Tailwind + TypeScript.
+> Hosted on Vercel + Supabase.
+
+---
+
+## 🏗️ 1. GENERAL STRUCTURE
+
+```
+ml-roadmap/
+├── apps/
+│   └── web/                → Frontend + API (Next.js)
+├── packages/
+│   ├── db/                 → Prisma schema + DB client
+│   ├── ui/                 → Shared UI components
+│   └── config/             → ESLint, Tailwind, TSConfig presets
+├── .env                    → Supabase credentials
+├── turbo.json              → Monorepo build config
+├── package.json            → Root dependencies
+└── project-rules.md        → This file (permanent context)
+```
+
+---
+
+## 🧩 2. TECHNOLOGY STACK
+
+| Layer      | Technology                  | Purpose                 |
+| ---------- | --------------------------- | ----------------------- |
+| Frontend   | **Next.js (App Router)**    | UI + API routes         |
+| Language   | **TypeScript**              | Type safety             |
+| Styling    | **TailwindCSS + shadcn/ui** | Design system           |
+| ORM        | **Prisma**                  | DB modeling and queries |
+| Database   | **Supabase (PostgreSQL)**   | Managed backend         |
+| Auth       | **Supabase Auth (JWT)**     | Session management      |
+| Storage    | **Supabase Storage**        | File uploads            |
+| Content    | **MDX + Contentlayer**      | Roadmap pages           |
+| i18n       | **next-intl**               | EN/TR localization      |
+| State      | **Zustand + LocalStorage**  | Progress/bookmark sync  |
+| Deployment | **Vercel + Supabase**       | Serverless hosting      |
+
+---
+
+## ⚙️ 3. CORE PRINCIPLES
+
+* **Clean architecture:** Route → Service → Repository → DB.
+* **Functional code style:** No OOP, use pure async functions.
+* **Type-safe:** Always use TypeScript interfaces & zod validation.
+* **Minimal dependencies:** Avoid unnecessary libraries.
+* **Separation of concerns:**
+
+  * UI: `/components`
+  * Logic: `/lib/services`
+  * Data: `/lib/db`
+  * API: `/app/api`
+* **Security first:**
+
+  * JWT required for protected routes.
+  * RLS policies active in Supabase.
+  * Only owner can access own progress/bookmarks.
+
+---
+
+## 🗄️ 4. DATABASE RULES
+
+* ORM: **Prisma**
+* DB: **PostgreSQL (Supabase)**
+* Naming:
+
+  * Table: `snake_case`
+  * Fields: `snake_case`
+  * Relations: use foreign key naming (`user_id`)
+* Every table has:
+
+  ```prisma
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  ```
+
+### Core Tables
+
+```
+users, profiles, phase, topic, resource,
+quiz, question, choice, quiz_attempt, quiz_answer,
+progress_item, bookmark, badge, user_badge
+```
+
+### Relations Example
+
+```prisma
+model progress_item {
+  id          String   @id @default(uuid())
+  user_id     String
+  topic_id    String
+  status      String   // planned | in_progress | completed
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  user        users    @relation(fields: [user_id], references: [id])
+  topic       topic    @relation(fields: [topic_id], references: [id])
+}
+```
+
+### DB Access
+
+* Access only via `@/lib/db/prismaClient.ts`
+* Never query DB directly inside components or API routes.
+
+---
+
+## 🔐 5. AUTHENTICATION
+
+* **Supabase Auth (JWT)** used for all protected endpoints.
+* Token is sent via `Authorization: Bearer <jwt>`.
+* In API routes:
+
+  ```ts
+  import { getUser } from "@/lib/auth/supabaseClient"
+  const user = await getUser(req)
+  if (!user) return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 })
+  ```
+
+---
+
+## 🧠 6. SERVICE LAYER RULES
+
+* Located at `/apps/web/lib/services/`
+* One file per domain (e.g., `quizService.ts`, `progressService.ts`)
+* Handles:
+
+  * Validation (with Zod)
+  * Authorization (via Supabase Auth)
+  * DB operations (via Prisma)
+  * Error throwing (`AppError`)
+* Example:
+
+  ```ts
+  export const ProgressService = {
+    async updateProgress(userId: string, topicId: string, status: string) {
+      return prisma.progress_item.upsert({
+        where: { user_id_topic_id: { user_id: userId, topic_id: topicId } },
+        update: { status },
+        create: { user_id: userId, topic_id: topicId, status },
+      })
+    }
+  }
+  ```
+
+---
+
+## 🌐 7. API ROUTES
+
+* Located at `/apps/web/app/api/*`
+* Each endpoint represents one resource.
+* File structure:
+
+  ```
+  /api/
+    ├── health/route.ts
+    ├── progress/route.ts
+    ├── quiz/route.ts
+    ├── bookmark/route.ts
+    └── auth/route.ts
+  ```
+* All responses follow standard JSON format:
+
+  ```json
+  {
+    "success": true,
+    "data": {},
+    "error": "optional"
+  }
+  ```
+
+---
+
+## 🎨 8. FRONTEND RULES
+
+* Components live in `/components/*`
+* Shared UI components → `/packages/ui/`
+* Design system → Tailwind + shadcn
+* Keep components pure, logic-free.
+* Page organization:
+
+  ```
+  /app/
+    ├── roadmap/          → Roadmap list & phases
+    ├── dashboard/        → User progress & quizzes
+    ├── resources/        → Learning materials
+    └── api/              → Backend endpoints
+  ```
+* Local state → Zustand (progress/bookmarks)
+* Persist state in LocalStorage, sync with DB after login.
+
+---
+
+## 🌍 9. INTERNATIONALIZATION (i18n)
+
+* Library: **next-intl**
+* Directory: `/apps/web/locales/`
+* Structure:
+
+  ```
+  locales/
+  ├── en/
+  │   ├── common.json
+  │   ├── roadmap.json
+  │   └── quiz.json
+  └── tr/
+      ├── common.json
+      ├── roadmap.json
+      └── quiz.json
+  ```
+* New language → add folder + update `next-intl.config.js`
+* MDX content mirrored in `/content/<lang>`
+
+---
+
+## 📚 10. CONTENT LAYER (MDX)
+
+* All roadmap content stored as `.mdx` under:
+
+  ```
+  /apps/web/content/en/
+  /apps/web/content/tr/
+  ```
+* MDX frontmatter:
+
+  ```mdx
+  ---
+  title: "Phase 1 - Python Foundations"
+  difficulty: "Beginner"
+  duration: 3
+  order: 1
+  ---
+  ```
+* Contentlayer parses metadata and exposes to `/roadmap/[phase]`.
+
+---
+
+## 🧱 11. DEVELOPMENT RULES
+
+* **One new feature = one new service + API route + DB model (if needed).**
+* **Never bypass service layer.**
+* **Always run lint & format before commit.**
+* **Use .env.local for local secrets, never push it.**
+* **Deploy pipeline:**
+
+  * Vercel (Next.js)
+  * Supabase (DB/Auth/Storage)
+
+---
+
+## 🧪 12. TESTING & VALIDATION
+
+* Use `zod` for API input validation.
+* Example:
+
+  ```ts
+  const schema = z.object({
+    topicId: z.string().uuid(),
+    status: z.enum(["planned", "in_progress", "completed"]),
+  })
+  ```
+* Run `npx prisma validate` before migrations.
+* Use Supabase dashboard for RLS testing.
+
+---
+
+## 🧰 13. UTILITIES & CONSTANTS
+
+* `/lib/utils/` → reusable helpers (formatDate, errorHandler)
+* `/lib/constants/` → fixed values (API paths, enums)
+* `/lib/auth/supabaseClient.ts` → user session helpers
+* `/lib/db/prismaClient.ts` → singleton Prisma client
+
+---
+
+## 🪶 14. CODING STYLE & NAMING
+
+* **Variables:** camelCase
+* **Functions:** verb + noun (e.g., `getUserProfile`)
+* **Components:** PascalCase
+* **Files:** kebab-case
+* **Database:** snake_case
+* **Services:** `XService.ts` (e.g., `QuizService.ts`)
+* **Return types:** always explicit
+* **Error class:** `AppError` with `status` and `message`.
+
+---
+
+## 🚦 15. API RESPONSE STANDARD
+
+| Field   | Type    | Description            |
+| ------- | ------- | ---------------------- |
+| success | boolean | Operation status       |
+| data    | any     | Result payload         |
+| error   | string  | Error message (if any) |
+
+Example:
+
+```json
+{
+  "success": true,
+  "data": { "quizId": "123", "score": 90 }
+}
+```
+
+---
+
+## 🔄 16. DEPLOYMENT & ENVIRONMENT
+
+* **Frontend + API:** Vercel
+* **Database + Auth + Storage:** Supabase
+* **Env variables:**
+
+  ```
+  NEXT_PUBLIC_SUPABASE_URL=
+  NEXT_PUBLIC_SUPABASE_ANON_KEY=
+  SUPABASE_SERVICE_ROLE_KEY=
+  DATABASE_URL=
+  ```
+* Use Vercel Dashboard for environment management.
+
+---
+
+## 🧠 17. SYSTEM HIERARCHY (How the AI Should Understand)
+
+1. Database schema (`packages/db/schema.prisma`) defines truth.
+2. Service layer handles logic, validation, auth.
+3. API routes expose public interface.
+4. Frontend consumes APIs and renders UI.
+5. i18n & MDX manage content.
+6. These rules (project-rules.md) override all defaults.
+
+---
+
+✅ **End of Project Rules**
+*(All agents, developers, or MCPs must obey this document.)*
+
+---
+
+
+---
