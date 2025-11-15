@@ -1,8 +1,6 @@
 // Prisma Schema for ML Engineer Roadmap
 // Using SQLite for local development
 // Switch to PostgreSQL (Supabase) for production
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client-js"
@@ -91,38 +89,6 @@ model Profile {
   updatedAt       DateTime @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-
-// ===================================
-// USER MANAGEMENT
-// ===================================
-
-model users {
-  id         String   @id @default(uuid())
-  email      String   @unique
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-
-  profile        profiles?
-  progress_items progress_item[]
-  bookmarks      bookmark[]
-  quiz_attempts  quiz_attempt[]
-
-  @@map("users")
-}
-
-model profiles {
-  id         String   @id @default(uuid())
-  user_id    String   @unique
-  full_name  String?
-  avatar_url String?
-  role       String   @default("student") // student, admin
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-
-  user users @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@map("profiles")
 }
@@ -211,67 +177,6 @@ model Resource {
 
   topic     Topic      @relation(fields: [topicId], references: [id], onDelete: Cascade)
   bookmarks Bookmark[]
-// ===================================
-// CONTENT HIERARCHY
-// ===================================
-
-model phase {
-  id          String   @id @default(uuid())
-  title       String
-  slug        String   @unique
-  description String?  @db.Text
-  order       Int
-  difficulty  String   // beginner, intermediate, advanced
-  duration    Int?     // estimated days
-  mdx_path    String?  // path to MDX file (optional)
-  published   Boolean  @default(false)
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
-
-  topics topic[]
-
-  @@map("phases")
-}
-
-model topic {
-  id             String   @id @default(uuid())
-  phase_id       String
-  title          String
-  slug           String
-  description    String?  @db.Text // Short description (shown in lists)
-  mdx_path       String?  // Path to MDX file: "ml/python-basics"
-  order          Int
-  estimated_time Int?     // minutes
-  published      Boolean  @default(false)
-  created_at     DateTime @default(now())
-  updated_at     DateTime @updatedAt
-
-  phase          phase           @relation(fields: [phase_id], references: [id], onDelete: Cascade)
-  resources      resource[]
-  quizzes        quiz[]
-  progress_items progress_item[]
-  bookmarks      bookmark[]
-
-  @@unique([phase_id, slug])
-  @@map("topics")
-}
-
-model resource {
-  id          String   @id @default(uuid())
-  topic_id    String
-  title       String
-  description String?  @db.Text
-  type        String   // pdf, link, video, book
-  url         String?  // External link
-  file_path   String?  // Supabase Storage path
-  file_size   Int?     // bytes
-  license     String?  // Copyright info
-  order       Int      @default(0)
-  published   Boolean  @default(false)
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
-
-  topic topic @relation(fields: [topic_id], references: [id], onDelete: Cascade)
 
   @@map("resources")
 }
@@ -344,24 +249,6 @@ model Quiz {
   topic     Topic         @relation(fields: [topicId], references: [id], onDelete: Cascade)
   questions Question[]
   attempts  QuizAttempt[]
-// ===================================
-// QUIZ SYSTEM
-// ===================================
-
-model quiz {
-  id          String   @id @default(uuid())
-  topic_id    String
-  title       String
-  description String?  @db.Text
-  pass_score  Int      @default(70) // percentage
-  time_limit  Int?     // minutes (null = no limit)
-  published   Boolean  @default(false)
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
-
-  topic     topic          @relation(fields: [topic_id], references: [id], onDelete: Cascade)
-  questions question[]
-  attempts  quiz_attempt[]
 
   @@map("quizzes")
 }
@@ -380,18 +267,6 @@ model Question {
   quiz    Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
   choices Choice[]
   answers QuizAnswer[]
-model question {
-  id             String   @id @default(uuid())
-  quiz_id        String
-  question_text  String   @db.Text
-  explanation    String?  @db.Text // Shown after answer
-  order          Int
-  created_at     DateTime @default(now())
-  updated_at     DateTime @updatedAt
-
-  quiz    quiz          @relation(fields: [quiz_id], references: [id], onDelete: Cascade)
-  choices choice[]
-  answers quiz_answer[]
 
   @@map("questions")
 }
@@ -406,16 +281,6 @@ model Choice {
   createdAt  DateTime @default(now())
 
   question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
-model choice {
-  id          String   @id @default(uuid())
-  question_id String
-  choice_text String   @db.Text
-  is_correct  Boolean  @default(false)
-  order       Int
-  created_at  DateTime @default(now())
-
-  question question      @relation(fields: [question_id], references: [id], onDelete: Cascade)
-  answers  quiz_answer[]
 
   @@map("choices")
 }
@@ -433,18 +298,6 @@ model QuizAttempt {
   user    User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   quiz    Quiz         @relation(fields: [quizId], references: [id], onDelete: Cascade)
   answers QuizAnswer[]
-model quiz_attempt {
-  id           String    @id @default(uuid())
-  user_id      String
-  quiz_id      String
-  score        Int?      // percentage (0-100)
-  passed       Boolean   @default(false)
-  started_at   DateTime  @default(now())
-  completed_at DateTime?
-
-  user    users         @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  quiz    quiz          @relation(fields: [quiz_id], references: [id], onDelete: Cascade)
-  answers quiz_answer[]
 
   @@map("quiz_attempts")
 }
@@ -461,17 +314,6 @@ model QuizAnswer {
 
   attempt  QuizAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
   question Question    @relation(fields: [questionId], references: [id], onDelete: Cascade)
-model quiz_answer {
-  id          String   @id @default(uuid())
-  attempt_id  String
-  question_id String
-  choice_id   String
-  is_correct  Boolean
-  answered_at DateTime @default(now())
-
-  attempt  quiz_attempt @relation(fields: [attempt_id], references: [id], onDelete: Cascade)
-  question question     @relation(fields: [question_id], references: [id], onDelete: Cascade)
-  choice   choice       @relation(fields: [choice_id], references: [id], onDelete: Cascade)
 
   @@map("quiz_answers")
 }
@@ -530,38 +372,3 @@ model ActivityLog {
   @@index([createdAt])
   @@map("activity_logs")
 }
-// ===================================
-// USER PROGRESS & ENGAGEMENT
-// ===================================
-
-model progress_item {
-  id           String    @id @default(uuid())
-  user_id      String
-  topic_id     String
-  status       String    // planned, in_progress, completed
-  started_at   DateTime?
-  completed_at DateTime?
-  created_at   DateTime  @default(now())
-  updated_at   DateTime  @updatedAt
-
-  user  users @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  topic topic @relation(fields: [topic_id], references: [id], onDelete: Cascade)
-
-  @@unique([user_id, topic_id])
-  @@index([user_id, status])
-  @@map("progress_items")
-}
-
-model bookmark {
-  id         String   @id @default(uuid())
-  user_id    String
-  topic_id   String
-  created_at DateTime @default(now())
-
-  user  users @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  topic topic @relation(fields: [topic_id], references: [id], onDelete: Cascade)
-
-  @@unique([user_id, topic_id])
-  @@map("bookmarks")
-}
-
