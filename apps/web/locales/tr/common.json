@@ -26,5 +26,103 @@
     "back": "Geri",
     "next": "İleri",
     "previous": "Önceki"
+  },
+  "dashboard": {
+    "title": "Gösterge Panelim",
+    "subtitle": "Öğrenme ilerlemenizi ve başarılarınızı takip edin",
+    "stats": {
+      "planned": "Planlandı",
+      "in_progress": "Devam Ediyor",
+      "completed": "Tamamlandı",
+      "level": "Seviye",
+      "xp": "XP",
+      "badges": "Rozet"
+    },
+    "progress": {
+      "title": "Öğrenme İlerlemesi",
+      "no_progress": "Henüz ilerleme yok. Öğrenmeye başlayın!",
+      "continue_learning": "Öğrenmeye Devam Et"
+    },
+    "badges": {
+      "title": "Son Rozetler",
+      "no_badges": "Henüz rozet kazanılmadı. Rozet kazanmak için konuları tamamlayın!",
+      "view_all": "Tüm Rozetleri Gör"
+    },
+    "activity": {
+      "title": "Son Aktiviteler",
+      "no_activity": "Henüz aktivite yok. Öğrenme yolculuğunuza başlayın!"
+    },
+    "recommendations": {
+      "title": "Sizin İçin Öneriler",
+      "start_learning": "Öğrenmeye Başla"
+    }
+  },
+  "status": {
+    "planned": "Planlandı",
+    "in_progress": "Devam Ediyor",
+    "completed": "Tamamlandı"
+  },
+  "roadmap": {
+    "title": "Öğrenme Yol Haritaları",
+    "subtitle": "Yolunuzu seçin ve ihtiyacınız olan becerilerde ustalaşın",
+    "phases": "Aşamalar",
+    "topics": "Konular",
+    "duration": "Süre",
+    "months": "ay",
+    "view_details": "Detayları Gör",
+    "start_learning": "Öğrenmeye Başla"
+  },
+  "tracks": {
+    "ml": "Makine Öğrenmesi Mühendisi",
+    "ai": "Yapay Zeka Mühendisi",
+    "cs": "Bilgisayar Bilimi",
+    "se": "Yazılım Mühendisi",
+    "ds": "Veri Bilimci"
+  },
+  "home": {
+    "hero": {
+      "title": "Kapsamlı Makine Öğrenmesi Yolculuğunuz",
+      "subtitle": "Yapılandırılmış yol haritalarıyla ML, AI, Veri Bilimi, Bilgisayar Bilimi ve Yazılım Mühendisliği'nde ustalaşın",
+      "description": "6 ayda sıfırdan zirveye. İnteraktif içerik, uygulamalı projeler ve oyunlaştırılmış öğrenme deneyimi.",
+      "cta_primary": "Öğrenmeye Başla",
+      "cta_secondary": "Yol Haritasını Gör"
+    },
+    "features": {
+      "title": "Neden Platformumuzu Seçmelisiniz?",
+      "structured": {
+        "title": "Yapılandırılmış Öğrenme Yolu",
+        "description": "Sektör uzmanları tarafından tasarlanan, sizi başlangıçtan ileri seviyeye taşıyan 6 aşamalı kapsamlı yol haritası"
+      },
+      "multilingual": {
+        "title": "İki Dilli İçerik",
+        "description": "Tam İngilizce ve Türkçe desteğiyle tercih ettiğiniz dilde öğrenin"
+      },
+      "interactive": {
+        "title": "İnteraktif İçerik",
+        "description": "MDX destekli içerik, quizler ve uygulamalı egzersizlerle etkileşimli öğrenin"
+      },
+      "progress": {
+        "title": "İlerlemenizi Takip Edin",
+        "description": "Detaylı ilerleme takibi ve analizlerle öğrenme yolculuğunuzu izleyin"
+      },
+      "gamification": {
+        "title": "Oyunlaştırılmış Deneyim",
+        "description": "Rozetler kazanın, seviye atlayın ve motivasyonunuzu korumak için kendinizle yarışın"
+      },
+      "resources": {
+        "title": "Zengin Kaynaklar",
+        "description": "Özenle seçilmiş PDF'ler, videolar, makaleler ve uygulamalı projelere erişin"
+      }
+    },
+    "tracks": {
+      "title": "Yolunuzu Seçin",
+      "subtitle": "Kariyer hedeflerinize uygun öğrenme yolunu seçin",
+      "view_all": "Tüm Yolları Gör"
+    },
+    "cta": {
+      "title": "Yolculuğunuza Başlamaya Hazır mısınız?",
+      "description": "Makine Öğrenmesi ve AI'da ustalaşan binlerce öğrenciye katılın",
+      "button": "Ücretsiz Başla"
+    }
   }
 }

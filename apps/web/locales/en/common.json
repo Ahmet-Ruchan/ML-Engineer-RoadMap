@@ -26,5 +26,103 @@
     "back": "Back",
     "next": "Next",
     "previous": "Previous"
+  },
+  "dashboard": {
+    "title": "My Dashboard",
+    "subtitle": "Track your learning progress and achievements",
+    "stats": {
+      "planned": "Planned",
+      "in_progress": "In Progress",
+      "completed": "Completed",
+      "level": "Level",
+      "xp": "XP",
+      "badges": "Badges"
+    },
+    "progress": {
+      "title": "Learning Progress",
+      "no_progress": "No progress yet. Start learning!",
+      "continue_learning": "Continue Learning"
+    },
+    "badges": {
+      "title": "Recent Badges",
+      "no_badges": "No badges earned yet. Complete topics to earn badges!",
+      "view_all": "View All Badges"
+    },
+    "activity": {
+      "title": "Recent Activity",
+      "no_activity": "No activities yet. Start your learning journey!"
+    },
+    "recommendations": {
+      "title": "Recommended for You",
+      "start_learning": "Start Learning"
+    }
+  },
+  "status": {
+    "planned": "Planned",
+    "in_progress": "In Progress",
+    "completed": "Completed"
+  },
+  "roadmap": {
+    "title": "Learning Roadmaps",
+    "subtitle": "Choose your path and master the skills you need",
+    "phases": "Phases",
+    "topics": "Topics",
+    "duration": "Duration",
+    "months": "months",
+    "view_details": "View Details",
+    "start_learning": "Start Learning"
+  },
+  "tracks": {
+    "ml": "Machine Learning Engineer",
+    "ai": "AI Engineer",
+    "cs": "Computer Science",
+    "se": "Software Engineer",
+    "ds": "Data Scientist"
+  },
+  "home": {
+    "hero": {
+      "title": "Your Complete Machine Learning Journey",
+      "subtitle": "Master ML, AI, Data Science, Computer Science, and Software Engineering with structured roadmaps",
+      "description": "From zero to hero in 6 months. Interactive content, hands-on projects, and gamified learning experience.",
+      "cta_primary": "Start Learning",
+      "cta_secondary": "View Roadmap"
+    },
+    "features": {
+      "title": "Why Choose Our Platform?",
+      "structured": {
+        "title": "Structured Learning Path",
+        "description": "6-phase comprehensive roadmap designed by industry experts, taking you from beginner to advanced"
+      },
+      "multilingual": {
+        "title": "Bilingual Content",
+        "description": "Learn in your preferred language with full English and Turkish support"
+      },
+      "interactive": {
+        "title": "Interactive Content",
+        "description": "Engage with MDX-powered content, quizzes, and hands-on exercises"
+      },
+      "progress": {
+        "title": "Track Your Progress",
+        "description": "Monitor your learning journey with detailed progress tracking and analytics"
+      },
+      "gamification": {
+        "title": "Gamified Experience",
+        "description": "Earn badges, level up, and compete with yourself to stay motivated"
+      },
+      "resources": {
+        "title": "Rich Resources",
+        "description": "Access curated PDFs, videos, articles, and hands-on projects"
+      }
+    },
+    "tracks": {
+      "title": "Choose Your Track",
+      "subtitle": "Select the learning path that matches your career goals",
+      "view_all": "View All Tracks"
+    },
+    "cta": {
+      "title": "Ready to Start Your Journey?",
+      "description": "Join thousands of learners mastering Machine Learning and AI",
+      "button": "Get Started Free"
+    }
   }
 }
