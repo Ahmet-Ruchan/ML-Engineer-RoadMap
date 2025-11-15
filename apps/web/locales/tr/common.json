@@ -27,6 +27,34 @@
     "next": "İleri",
     "previous": "Önceki"
   },
+  "auth": {
+    "login": {
+      "title": "Tekrar Hoş Geldiniz",
+      "subtitle": "Öğrenme yolculuğunuza devam etmek için giriş yapın",
+      "email": "E-posta",
+      "password": "Şifre",
+      "submit": "Giriş Yap",
+      "no_account": "Hesabınız yok mu?",
+      "signup_link": "Kayıt ol",
+      "error": "Geçersiz e-posta veya şifre",
+      "success": "Başarıyla giriş yapıldı"
+    },
+    "register": {
+      "title": "Hesap Oluştur",
+      "subtitle": "ML öğrenme yolculuğunuza bugün başlayın",
+      "name": "Ad Soyad",
+      "email": "E-posta",
+      "password": "Şifre",
+      "confirm_password": "Şifre Tekrar",
+      "submit": "Hesap Oluştur",
+      "have_account": "Zaten hesabınız var mı?",
+      "login_link": "Giriş yap",
+      "error": "Kayıt başarısız oldu",
+      "success": "Hesap başarıyla oluşturuldu",
+      "password_mismatch": "Şifreler eşleşmiyor",
+      "email_exists": "E-posta zaten kullanımda"
+    }
+  },
   "dashboard": {
     "title": "Gösterge Panelim",
     "subtitle": "Öğrenme ilerlemenizi ve başarılarınızı takip edin",
