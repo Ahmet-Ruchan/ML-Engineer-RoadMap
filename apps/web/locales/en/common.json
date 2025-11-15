@@ -1,0 +1,30 @@
+{
+  "nav": {
+    "home": "Home",
+    "roadmap": "Roadmap",
+    "dashboard": "Dashboard",
+    "resources": "Resources",
+    "login": "Login",
+    "signup": "Sign Up",
+    "logout": "Logout"
+  },
+  "footer": {
+    "copyright": "© 2024 ML Engineer Roadmap. All rights reserved.",
+    "about": "About",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous"
+  }
+}

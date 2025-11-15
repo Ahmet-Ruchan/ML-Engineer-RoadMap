@@ -1,0 +1,30 @@
+{
+  "nav": {
+    "home": "Ana Sayfa",
+    "roadmap": "Yol Haritası",
+    "dashboard": "Panel",
+    "resources": "Kaynaklar",
+    "login": "Giriş Yap",
+    "signup": "Kayıt Ol",
+    "logout": "Çıkış Yap"
+  },
+  "footer": {
+    "copyright": "© 2024 ML Engineer Roadmap. Tüm hakları saklıdır.",
+    "about": "Hakkında",
+    "contact": "İletişim",
+    "privacy": "Gizlilik Politikası",
+    "terms": "Kullanım Şartları"
+  },
+  "common": {
+    "loading": "Yükleniyor...",
+    "error": "Bir hata oluştu",
+    "success": "Başarılı",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "back": "Geri",
+    "next": "İleri",
+    "previous": "Önceki"
+  }
+}
