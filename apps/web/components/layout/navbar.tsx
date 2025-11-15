@@ -1,11 +1,13 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import { useSession, signOut } from 'next-auth/react'
 import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
 
 export function Navbar() {
   const t = useTranslations()
+  const { data: session, status } = useSession()
 
   return (
     <nav className="border-b bg-background">
@@ -38,10 +40,31 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-4">
-            <Button variant="ghost" size="sm">
-              {t('nav.login')}
-            </Button>
-            <Button size="sm">{t('nav.signup')}</Button>
+            {status === 'loading' ? (
+              <div className="text-sm text-muted-foreground">{t('common.loading')}</div>
+            ) : session ? (
+              <>
+                <span className="text-sm text-muted-foreground hidden sm:inline">
+                  {session.user?.name || session.user?.email}
+                </span>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => signOut({ callbackUrl: '/' })}
+                >
+                  {t('nav.logout')}
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button variant="ghost" size="sm" asChild>
+                  <Link href="/login">{t('nav.login')}</Link>
+                </Button>
+                <Button size="sm" asChild>
+                  <Link href="/register">{t('nav.signup')}</Link>
+                </Button>
+              </>
+            )}
           </div>
         </div>
       </div>

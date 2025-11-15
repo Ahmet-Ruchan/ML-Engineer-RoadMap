@@ -27,6 +27,34 @@
     "next": "Next",
     "previous": "Previous"
   },
+  "auth": {
+    "login": {
+      "title": "Welcome Back",
+      "subtitle": "Sign in to continue your learning journey",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign In",
+      "no_account": "Don't have an account?",
+      "signup_link": "Sign up",
+      "error": "Invalid email or password",
+      "success": "Successfully logged in"
+    },
+    "register": {
+      "title": "Create Account",
+      "subtitle": "Start your ML learning journey today",
+      "name": "Full Name",
+      "email": "Email",
+      "password": "Password",
+      "confirm_password": "Confirm Password",
+      "submit": "Create Account",
+      "have_account": "Already have an account?",
+      "login_link": "Sign in",
+      "error": "Registration failed",
+      "success": "Account created successfully",
+      "password_mismatch": "Passwords do not match",
+      "email_exists": "Email already in use"
+    }
+  },
   "dashboard": {
     "title": "My Dashboard",
     "subtitle": "Track your learning progress and achievements",
