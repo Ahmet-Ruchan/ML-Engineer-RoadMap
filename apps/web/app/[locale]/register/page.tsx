@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
-import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Link } from '@/navigation'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
@@ -57,21 +56,8 @@ export default function RegisterPage() {
         return
       }
 
-      // Auto sign in after registration
-      const result = await signIn('credentials', {
-        email: formData.email,
-        password: formData.password,
-        redirect: false,
-      })
-
-      if (result?.error) {
-        // Registration successful but login failed - redirect to login
-        router.push('/login')
-      } else {
-        // Both registration and login successful
-        router.push('/dashboard')
-        router.refresh()
-      }
+      // Registration successful - redirect to login
+      router.push('/login?registered=true')
     } catch (err) {
       setError(t('common.error'))
       setIsLoading(false)
