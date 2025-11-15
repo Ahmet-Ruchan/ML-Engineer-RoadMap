@@ -72,6 +72,28 @@
     "view_details": "Detayları Gör",
     "start_learning": "Öğrenmeye Başla"
   },
+  "trackDetail": {
+    "overview": "Genel Bakış",
+    "learning_path": "Öğrenme Yolu",
+    "phase": "Aşama",
+    "resources": "Kaynaklar",
+    "quiz": "Quiz",
+    "start_topic": "Konuya Başla",
+    "mark_complete": "Tamamlandı Olarak İşaretle",
+    "mark_in_progress": "Devam Ediyor Olarak İşaretle",
+    "prerequisites": "Ön Koşullar",
+    "estimated_time": "Tahmini Süre",
+    "difficulty": "Zorluk",
+    "beginner": "Başlangıç",
+    "intermediate": "Orta",
+    "advanced": "İleri",
+    "total_topics": "Toplam Konu",
+    "your_progress": "İlerlemeniz",
+    "not_started": "Başlanmadı",
+    "view_resource": "Kaynağı Görüntüle",
+    "download": "İndir",
+    "take_quiz": "Quiz'e Başla"
+  },
   "tracks": {
     "ml": "Makine Öğrenmesi Mühendisi",
     "ai": "Yapay Zeka Mühendisi",

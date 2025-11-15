@@ -72,6 +72,28 @@
     "view_details": "View Details",
     "start_learning": "Start Learning"
   },
+  "trackDetail": {
+    "overview": "Overview",
+    "learning_path": "Learning Path",
+    "phase": "Phase",
+    "resources": "Resources",
+    "quiz": "Quiz",
+    "start_topic": "Start Topic",
+    "mark_complete": "Mark as Complete",
+    "mark_in_progress": "Mark In Progress",
+    "prerequisites": "Prerequisites",
+    "estimated_time": "Estimated Time",
+    "difficulty": "Difficulty",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "total_topics": "Total Topics",
+    "your_progress": "Your Progress",
+    "not_started": "Not Started",
+    "view_resource": "View Resource",
+    "download": "Download",
+    "take_quiz": "Take Quiz"
+  },
   "tracks": {
     "ml": "Machine Learning Engineer",
     "ai": "AI Engineer",
