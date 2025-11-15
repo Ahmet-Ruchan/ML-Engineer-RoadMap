@@ -1,0 +1,24 @@
+{
+  "title": "ML Engineer Roadmap",
+  "subtitle": "Your comprehensive guide to mastering Machine Learning and AI",
+  "tracks": {
+    "ml": "Machine Learning Engineer",
+    "ai": "AI Engineer",
+    "cs": "Computer Science",
+    "se": "Software Engineer",
+    "ds": "Data Scientist"
+  },
+  "phases": {
+    "phase1": "Phase 1: Foundation",
+    "phase2": "Phase 2: Data Manipulation",
+    "phase3": "Phase 3: ML Fundamentals",
+    "phase4": "Phase 4: Deep Learning",
+    "phase5": "Phase 5: Specialization",
+    "phase6": "Phase 6: Advanced Topics"
+  },
+  "status": {
+    "planned": "Planned",
+    "in_progress": "In Progress",
+    "completed": "Completed"
+  }
+}

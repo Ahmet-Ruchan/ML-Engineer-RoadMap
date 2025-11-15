@@ -4,6 +4,11 @@
   "private": true,
   "main": "./index.js",
   "files": [
+    "eslint",
+    "tailwind",
+    "typescript"
+  ]
+}
     "eslint.config.js",
     "tailwind.config.js",
     "tsconfig.base.json"

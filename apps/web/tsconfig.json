@@ -1,4 +1,6 @@
 {
+  "extends": "@ml-roadmap/config/typescript/nextjs.json",
+  "compilerOptions": {
   "extends": "@ml-roadmap/config/tsconfig.base.json",
   "compilerOptions": {
     "target": "ES2017",
@@ -15,6 +17,12 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "@/components/*": ["./components/*"],
+      "@/lib/*": ["./lib/*"],
+      "@/app/*": ["./app/*"]
     "paths": {
       "@/*": ["./src/*"]
     }
