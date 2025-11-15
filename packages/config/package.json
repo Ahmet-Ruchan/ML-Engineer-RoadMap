@@ -6,9 +6,7 @@
   "files": [
     "eslint",
     "tailwind",
-    "typescript"
-  ]
-}
+    "typescript",
     "eslint.config.js",
     "tailwind.config.js",
     "tsconfig.base.json"
