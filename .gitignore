@@ -10,6 +10,7 @@ coverage
 .next/
 out/
 build/
+build
 dist/
 
 # Production
@@ -34,6 +35,9 @@ pnpm-debug.log*
 .env.production.local
 apps/web/.env.local
 apps/web/.env
+.env.development.local
+.env.test.local
+.env.production.local
 
 # Vercel
 .vercel
@@ -51,6 +55,9 @@ prisma/migrations/migration_lock.toml
 *.db-journal
 
 # IDE
+packages/db/migrations/
+
+# IDEs
 .vscode/
 .idea/
 *.swp
@@ -59,3 +66,4 @@ prisma/migrations/migration_lock.toml
 
 # OS
 Thumbs.db
+

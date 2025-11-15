@@ -23,3 +23,16 @@ const nextConfig = {
 }
 
 module.exports = withNextIntl(nextConfig)
+const withMDX = require('@next/mdx')()
+
+const nextConfig = {
+  reactStrictMode: true,
+  transpilePackages: ['@ml-roadmap/db', '@ml-roadmap/ui'],
+  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
+  experimental: {
+    mdxRs: true,
+  },
+}
+
+module.exports = withMDX(nextConfig)
+
