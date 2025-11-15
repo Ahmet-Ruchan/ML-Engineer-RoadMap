@@ -47,6 +47,8 @@ next-env.d.ts
 
 # Prisma
 prisma/migrations/migration_lock.toml
+*.db
+*.db-journal
 
 # IDE
 .vscode/
