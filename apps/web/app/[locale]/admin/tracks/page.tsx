@@ -1,20 +1,78 @@
-import { prisma } from '@/lib/db'
+'use client'
+
+import { useEffect, useState } from 'react'
 import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { toast } from 'sonner'
 
-export default async function AdminTracksPage() {
-  const tracks = await prisma.track.findMany({
-    orderBy: { order: 'asc' },
-    include: {
-      _count: {
-        select: {
-          phases: true,
-        },
-      },
-    },
-  })
+interface Track {
+  id: string
+  slug: string
+  titleEn: string
+  titleTr: string
+  descriptionEn?: string
+  descriptionTr?: string
+  icon?: string
+  color?: string
+  _count: {
+    phases: number
+  }
+}
+
+export default function AdminTracksPage() {
+  const [tracks, setTracks] = useState<Track[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetchTracks()
+  }, [])
+
+  const fetchTracks = async () => {
+    try {
+      const res = await fetch('/api/admin/tracks')
+      const data = await res.json()
+      if (data.success) {
+        setTracks(data.data)
+      }
+    } catch (error) {
+      console.error('Error fetching tracks:', error)
+      toast.error('Failed to load tracks')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const deleteTrack = async (id: string, phaseCount: number) => {
+    if (phaseCount > 0) {
+      toast.error('Cannot delete track with phases. Delete phases first.')
+      return
+    }
+
+    if (!confirm('Are you sure you want to delete this track?')) return
+
+    try {
+      const res = await fetch(`/api/admin/tracks/${id}`, {
+        method: 'DELETE'
+      })
+      const data = await res.json()
+
+      if (data.success) {
+        toast.success('Track deleted successfully')
+        fetchTracks()
+      } else {
+        toast.error(data.error || 'Failed to delete track')
+      }
+    } catch (error) {
+      console.error('Error deleting track:', error)
+      toast.error('Failed to delete track')
+    }
+  }
+
+  if (loading) {
+    return <div className="text-center py-20">Loading tracks...</div>
+  }
 
   return (
     <div>
@@ -37,13 +95,11 @@ export default async function AdminTracksPage() {
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
+                    {track.icon && <span className="text-2xl">{track.icon}</span>}
                     <CardTitle>{track.titleEn}</CardTitle>
-                    <Badge variant={track.isActive ? 'default' : 'secondary'}>
-                      {track.isActive ? 'Active' : 'Inactive'}
-                    </Badge>
                   </div>
                   <CardDescription>
-                    Turkish: {track.titleTr}
+                    TR: {track.titleTr}
                   </CardDescription>
                   {track.descriptionEn && (
                     <p className="text-sm text-muted-foreground mt-2">
@@ -55,6 +111,13 @@ export default async function AdminTracksPage() {
                   <Button variant="outline" size="sm" asChild>
                     <Link href={`/admin/tracks/${track.id}/edit`}>Edit</Link>
                   </Button>
+                  <Button
+                    onClick={() => deleteTrack(track.id, track._count.phases)}
+                    variant="destructive"
+                    size="sm"
+                  >
+                    Delete
+                  </Button>
                 </div>
               </div>
             </CardHeader>
@@ -63,8 +126,14 @@ export default async function AdminTracksPage() {
                 <span>Slug: {track.slug}</span>
                 <span>•</span>
                 <span>{track._count.phases} phases</span>
-                <span>•</span>
-                <span>Order: {track.order}</span>
+                {track.color && (
+                  <>
+                    <span>•</span>
+                    <span className="flex items-center gap-1">
+                      Color: <div className={`w-4 h-4 rounded ${track.color}`}></div>
+                    </span>
+                  </>
+                )}
               </div>
             </CardContent>
           </Card>
