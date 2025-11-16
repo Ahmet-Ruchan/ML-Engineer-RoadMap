@@ -37,12 +37,20 @@ export function Navbar() {
                 {t('nav.resources')}
               </Link>
               {session && (
-                <Link
-                  href="/bookmarks"
-                  className="text-sm font-medium hover:text-primary transition-colors"
-                >
-                  Bookmarks
-                </Link>
+                <>
+                  <Link
+                    href="/bookmarks"
+                    className="text-sm font-medium hover:text-primary transition-colors"
+                  >
+                    Bookmarks
+                  </Link>
+                  <Link
+                    href="/badges"
+                    className="text-sm font-medium hover:text-primary transition-colors"
+                  >
+                    Badges
+                  </Link>
+                </>
               )}
             </div>
           </div>
