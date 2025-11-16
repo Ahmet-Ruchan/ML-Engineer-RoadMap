@@ -66,6 +66,8 @@ export default function TopicDetailPage() {
   const [topic, setTopic] = useState<Topic | null>(null)
   const [progress, setProgress] = useState<string | null>(null)
   const [bookmarked, setBookmarked] = useState(false)
+  const [notes, setNotes] = useState<any[]>([])
+  const [newNote, setNewNote] = useState('')
   const [loading, setLoading] = useState(true)
   const [updating, setUpdating] = useState(false)
 
@@ -103,6 +105,13 @@ export default function TopicDetailPage() {
                 (b: any) => b.topic.id === topicData.data.id
               )
               setBookmarked(isBookmarked)
+            }
+
+            // Fetch notes
+            const notesRes = await fetch(`/api/notes?topicId=${topicData.data.id}`)
+            const notesData = await notesRes.json()
+            if (notesData.success) {
+              setNotes(notesData.data)
             }
           }
         }
