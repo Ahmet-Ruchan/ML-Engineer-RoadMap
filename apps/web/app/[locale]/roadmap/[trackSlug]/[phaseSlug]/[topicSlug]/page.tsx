@@ -198,6 +198,61 @@ export default function TopicDetailPage() {
     }
   }
 
+  const addNote = async () => {
+    if (!session?.user || !topic || !newNote.trim()) {
+      toast.error('Please enter a note')
+      return
+    }
+
+    try {
+      const res = await fetch('/api/notes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          topicId: topic.id,
+          content: newNote
+        }),
+      })
+
+      const data = await res.json()
+
+      if (data.success) {
+        setNotes([data.data, ...notes])
+        setNewNote('')
+        toast.success('Note added')
+      } else {
+        toast.error('Failed to add note')
+      }
+    } catch (error) {
+      console.error('Error adding note:', error)
+      toast.error('Failed to add note')
+    }
+  }
+
+  const deleteNote = async (noteId: string) => {
+    if (!confirm('Delete this note?')) return
+
+    try {
+      const res = await fetch(`/api/notes/${noteId}`, {
+        method: 'DELETE'
+      })
+
+      const data = await res.json()
+
+      if (data.success) {
+        setNotes(notes.filter(n => n.id !== noteId))
+        toast.success('Note deleted')
+      } else {
+        toast.error('Failed to delete note')
+      }
+    } catch (error) {
+      console.error('Error deleting note:', error)
+      toast.error('Failed to delete note')
+    }
+  }
+
   if (loading) {
     return (
       <div className="container mx-auto px-4 py-12">
@@ -477,6 +532,64 @@ export default function TopicDetailPage() {
                   )
                 })}
               </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Notes */}
+        {session?.user && (
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle>My Notes</CardTitle>
+              <CardDescription>
+                Personal notes for this topic
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {/* Add note */}
+              <div className="flex gap-2">
+                <textarea
+                  value={newNote}
+                  onChange={(e) => setNewNote(e.target.value)}
+                  placeholder="Add a note..."
+                  className="flex-1 p-3 border rounded-lg resize-none"
+                  rows={3}
+                />
+                <Button onClick={addNote} disabled={!newNote.trim()}>
+                  Add Note
+                </Button>
+              </div>
+
+              {/* Notes list */}
+              {notes.length > 0 ? (
+                <div className="space-y-3">
+                  {notes.map((note) => (
+                    <div
+                      key={note.id}
+                      className="p-4 border rounded-lg bg-muted/30"
+                    >
+                      <div className="flex justify-between items-start mb-2">
+                        <span className="text-xs text-muted-foreground">
+                          {new Date(note.createdAt).toLocaleDateString()}
+                        </span>
+                        <Button
+                          onClick={() => deleteNote(note.id)}
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 px-2"
+                        >
+                          Delete
+                        </Button>
+                      </div>
+                      <p className="text-sm whitespace-pre-wrap">{note.content}</p>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-sm text-muted-foreground text-center py-4">
+                  No notes yet. Add your first note above!
+                </p>
+              )}
             </CardContent>
           </Card>
         )}
