@@ -44,9 +44,14 @@ export function Navbar() {
               <div className="text-sm text-muted-foreground">{t('common.loading')}</div>
             ) : session ? (
               <>
-                <span className="text-sm text-muted-foreground hidden sm:inline">
-                  {session.user?.name || session.user?.email}
-                </span>
+                {session.user?.role === 'admin' && (
+                  <Button variant="outline" size="sm" asChild>
+                    <Link href="/admin">Admin</Link>
+                  </Button>
+                )}
+                <Button variant="ghost" size="sm" asChild>
+                  <Link href="/profile">Profile</Link>
+                </Button>
                 <Button
                   variant="ghost"
                   size="sm"
