@@ -35,7 +35,7 @@ export async function GET() {
 
     // Check and award new badges
     for (const badge of allBadges) {
-      const hasThis Badge = userBadges.some(ub => ub.badgeId === badge.id)
+      const hasBadge = userBadges.some(ub => ub.badgeId === badge.id)
 
       if (!hasBadge && completedTopics >= badge.requiredCount) {
         // Award badge
