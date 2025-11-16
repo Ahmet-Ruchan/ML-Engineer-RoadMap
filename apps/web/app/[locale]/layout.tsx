@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
+import { Toaster } from 'sonner'
 import { Navbar } from '@/components/layout/navbar'
 import { Footer } from '@/components/layout/footer'
 import { SessionProvider } from '@/components/providers/session-provider'
@@ -28,6 +29,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <SessionProvider>
           <NextIntlClientProvider messages={messages}>
+            <Toaster position="top-right" richColors />
             <div className="flex min-h-screen flex-col">
               <Navbar />
               <main className="flex-1">{children}</main>

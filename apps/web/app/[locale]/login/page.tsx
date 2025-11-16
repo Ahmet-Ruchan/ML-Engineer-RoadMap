@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Link } from '@/navigation'
+import { toast } from 'sonner'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -33,7 +34,9 @@ export default function LoginPage() {
 
       if (result?.error) {
         setError(t('auth.login.error'))
+        toast.error(t('auth.login.error'))
       } else {
+        toast.success(t('auth.login.success'))
         router.push('/dashboard')
         router.refresh()
       }

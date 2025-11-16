@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/navigation'
 import { Link } from '@/navigation'
+import { toast } from 'sonner'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -28,6 +29,7 @@ export default function RegisterPage() {
     // Validate passwords match
     if (formData.password !== formData.confirmPassword) {
       setError(t('auth.register.password_mismatch'))
+      toast.error(t('auth.register.password_mismatch'))
       setIsLoading(false)
       return
     }
@@ -49,14 +51,17 @@ export default function RegisterPage() {
       if (!data.success) {
         if (data.error?.includes('already exists')) {
           setError(t('auth.register.email_exists'))
+          toast.error(t('auth.register.email_exists'))
         } else {
           setError(t('auth.register.error'))
+          toast.error(t('auth.register.error'))
         }
         setIsLoading(false)
         return
       }
 
       // Registration successful - redirect to login
+      toast.success(t('auth.register.success'))
       router.push('/login?registered=true')
     } catch (err) {
       setError(t('common.error'))
