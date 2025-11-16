@@ -55,7 +55,7 @@ export default function AdminPhasesPage() {
     if (!confirm('Are you sure you want to delete this phase?')) return
 
     try {
-      const res = await fetch(\`/api/admin/phases/\${id}\`, {
+      const res = await fetch(`/api/admin/phases/\${id}`, {
         method: 'DELETE'
       })
       const data = await res.json()
@@ -107,7 +107,7 @@ export default function AdminPhasesPage() {
                 </div>
                 <div className="flex gap-2">
                   <Button variant="outline" size="sm" asChild>
-                    <Link href={\`/admin/phases/\${phase.id}/edit\`}>Edit</Link>
+                    <Link href={`/admin/phases/\${phase.id}/edit`}>Edit</Link>
                   </Button>
                   <Button
                     onClick={() => deletePhase(phase.id, phase._count.topics)}

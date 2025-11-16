@@ -35,7 +35,7 @@ export default function EditTopicPage() {
 
   const fetchTopic = async () => {
     try {
-      const res = await fetch(\`/api/admin/topics/\${topicId}\`)
+      const res = await fetch(`/api/admin/topics/\${topicId}`)
       const data = await res.json()
       if (data.success) {
         setTopic(data.data)
@@ -57,7 +57,7 @@ export default function EditTopicPage() {
 
     setSaving(true)
     try {
-      const res = await fetch(\`/api/admin/topics/\${topicId}\`, {
+      const res = await fetch(`/api/admin/topics/\${topicId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(topic)

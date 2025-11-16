@@ -271,11 +271,11 @@ export default function NewQuizPage() {
                 <label className="block text-sm font-medium mb-3">Choices (Select the correct answer)</label>
                 <div className="space-y-3">
                   {question.choices.map((choice, cIndex) => (
-                    <div key={cIndex} className={\`p-3 border rounded \${choice.isCorrect ? 'bg-green-50 border-green-500' : ''}\`}>
+                    <div key={cIndex} className={`p-3 border rounded \${choice.isCorrect ? 'bg-green-50 border-green-500' : ''}`}>
                       <div className="flex items-start gap-2 mb-2">
                         <input
                           type="radio"
-                          name={\`correct-\${qIndex}\`}
+                          name={`correct-\${qIndex}`}
                           checked={choice.isCorrect}
                           onChange={() => updateChoice(qIndex, cIndex, 'isCorrect', true)}
                           className="mt-1"
@@ -286,7 +286,7 @@ export default function NewQuizPage() {
                             value={choice.choiceTextEn}
                             onChange={(e) => updateChoice(qIndex, cIndex, 'choiceTextEn', e.target.value)}
                             className="w-full p-1 border rounded text-sm"
-                            placeholder={\`Choice \${cIndex + 1} (EN)\`}
+                            placeholder={`Choice \${cIndex + 1} (EN)`}
                             required
                           />
                           <input
@@ -294,7 +294,7 @@ export default function NewQuizPage() {
                             value={choice.choiceTextTr}
                             onChange={(e) => updateChoice(qIndex, cIndex, 'choiceTextTr', e.target.value)}
                             className="w-full p-1 border rounded text-sm"
-                            placeholder={\`Seçenek \${cIndex + 1} (TR)\`}
+                            placeholder={`Seçenek \${cIndex + 1} (TR)`}
                             required
                           />
                         </div>

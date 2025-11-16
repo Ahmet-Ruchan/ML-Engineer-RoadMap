@@ -49,7 +49,7 @@ export default function EditPhasePage() {
 
   const fetchPhase = async () => {
     try {
-      const res = await fetch(\`/api/admin/phases/\${phaseId}\`)
+      const res = await fetch(`/api/admin/phases/\${phaseId}`)
       const data = await res.json()
       if (data.success) {
         const phase = data.data
@@ -80,7 +80,7 @@ export default function EditPhasePage() {
     setSaving(true)
 
     try {
-      const res = await fetch(\`/api/admin/phases/\${phaseId}\`, {
+      const res = await fetch(`/api/admin/phases/\${phaseId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
