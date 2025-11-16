@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -50,6 +50,7 @@ interface Resource {
 export default function SearchPage() {
   const searchParams = useSearchParams()
   const locale = useLocale()
+  const t = useTranslations()
   const [query, setQuery] = useState(searchParams.get('q') || '')
   const [topics, setTopics] = useState<Topic[]>([])
   const [resources, setResources] = useState<Resource[]>([])
@@ -106,7 +107,7 @@ export default function SearchPage() {
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8">Search</h1>
+        <h1 className="text-4xl font-bold mb-8">{t('search.title')}</h1>
 
         {/* Search Form */}
         <form onSubmit={handleSearch} className="mb-8">
@@ -115,11 +116,11 @@ export default function SearchPage() {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search topics, resources..."
+              placeholder={t('search.placeholder')}
               className="flex-1 p-3 border rounded-lg"
             />
             <Button type="submit" disabled={loading || query.trim().length < 2}>
-              {loading ? 'Searching...' : 'Search'}
+              {loading ? t('search.searching') : t('search.button')}
             </Button>
           </div>
         </form>
@@ -127,14 +128,14 @@ export default function SearchPage() {
         {/* Results */}
         {loading ? (
           <div className="text-center py-12">
-            <div className="animate-pulse text-muted-foreground">Searching...</div>
+            <div className="animate-pulse text-muted-foreground">{t('search.searching')}</div>
           </div>
         ) : searched ? (
           <>
             {/* Topics */}
             {topics.length > 0 && (
               <div className="mb-8">
-                <h2 className="text-2xl font-bold mb-4">Topics ({topics.length})</h2>
+                <h2 className="text-2xl font-bold mb-4">{t('search.topics')} ({topics.length})</h2>
                 <div className="space-y-4">
                   {topics.map((topic) => {
                     const title = locale === 'tr' ? topic.titleTr : topic.titleEn
@@ -160,7 +161,7 @@ export default function SearchPage() {
                             <Link
                               href={\`/roadmap/\${topic.phase.track.slug}/\${topic.phase.slug}/\${topic.slug}\`}
                             >
-                              View Topic
+                              {t('search.view_topic')}
                             </Link>
                           </Button>
                         </CardContent>
@@ -174,7 +175,7 @@ export default function SearchPage() {
             {/* Resources */}
             {resources.length > 0 && (
               <div className="mb-8">
-                <h2 className="text-2xl font-bold mb-4">Resources ({resources.length})</h2>
+                <h2 className="text-2xl font-bold mb-4">{t('search.resources')} ({resources.length})</h2>
                 <div className="space-y-4">
                   {resources.map((resource) => {
                     const title = locale === 'tr' ? resource.titleTr : resource.titleEn
@@ -195,7 +196,7 @@ export default function SearchPage() {
                               </div>
                               <Button asChild size="sm">
                                 <a href={resource.url} target="_blank" rel="noopener noreferrer">
-                                  View Resource →
+                                  {t('search.view_resource')} →
                                 </a>
                               </Button>
                             </div>
@@ -213,9 +214,9 @@ export default function SearchPage() {
               <Card>
                 <CardContent className="flex flex-col items-center justify-center py-12">
                   <div className="text-6xl mb-4">🔍</div>
-                  <h3 className="text-xl font-semibold mb-2">No results found</h3>
+                  <h3 className="text-xl font-semibold mb-2">{t('search.no_results')}</h3>
                   <p className="text-muted-foreground">
-                    Try different keywords or browse the roadmap
+                    {t('search.no_results_description')}
                   </p>
                 </CardContent>
               </Card>
@@ -225,9 +226,9 @@ export default function SearchPage() {
           <Card>
             <CardContent className="flex flex-col items-center justify-center py-12">
               <div className="text-6xl mb-4">🔎</div>
-              <h3 className="text-xl font-semibold mb-2">Start searching</h3>
+              <h3 className="text-xl font-semibold mb-2">{t('search.start_searching')}</h3>
               <p className="text-muted-foreground">
-                Enter a keyword to search topics and resources
+                {t('search.start_description')}
               </p>
             </CardContent>
           </Card>
