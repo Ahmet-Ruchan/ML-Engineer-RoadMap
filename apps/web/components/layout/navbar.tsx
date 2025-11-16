@@ -36,6 +36,12 @@ export function Navbar() {
               >
                 {t('nav.resources')}
               </Link>
+              <Link
+                href="/search"
+                className="text-sm font-medium hover:text-primary transition-colors"
+              >
+                Search
+              </Link>
               {session && (
                 <>
                   <Link
