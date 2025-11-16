@@ -174,5 +174,95 @@
       "description": "Makine Öğrenmesi ve AI'da ustalaşan binlerce öğrenciye katılın",
       "button": "Ücretsiz Başla"
     }
+  },
+  "search": {
+    "title": "Ara",
+    "placeholder": "Konu, kaynak ara...",
+    "button": "Ara",
+    "searching": "Aranıyor...",
+    "topics": "Konular",
+    "resources": "Kaynaklar",
+    "no_results": "Sonuç bulunamadı",
+    "no_results_description": "Farklı anahtar kelimeler deneyin veya yol haritasına göz atın",
+    "start_searching": "Aramaya başlayın",
+    "start_description": "Konu ve kaynakları aramak için bir anahtar kelime girin",
+    "view_topic": "Konuyu Görüntüle",
+    "view_resource": "Kaynağı Görüntüle"
+  },
+  "bookmarks": {
+    "title": "Yer İşaretlerim",
+    "subtitle": "Hızlı erişim için kaydettiğiniz konular",
+    "bookmark": "Yer İşareti",
+    "bookmarked": "Yer İşaretlendi",
+    "remove": "Kaldır",
+    "no_bookmarks": "Henüz yer işareti yok",
+    "no_bookmarks_description": "Konuları daha sonra için yer işaretleyin",
+    "browse_roadmap": "Yol Haritasına Göz At"
+  },
+  "badges": {
+    "title": "Rozetler ve Başarılar",
+    "subtitle": "Öğrenme dönüm noktalarınızı takip edin",
+    "earned": "Kazanıldı",
+    "locked": "Kilitli",
+    "progress": "İlerleme",
+    "stats": {
+      "earned": "Kazanılan Rozet",
+      "completed": "Tamamlanan Konu",
+      "collection": "Koleksiyon"
+    },
+    "no_badges": "Henüz rozet yok",
+    "complete_topics": "Bu rozeti kazanmak için konuları tamamlayın"
+  },
+  "notes": {
+    "title": "Notlarım",
+    "add": "Not Ekle",
+    "placeholder": "Bir not ekleyin...",
+    "delete": "Sil",
+    "no_notes": "Henüz not yok",
+    "updated": "Güncellendi"
+  },
+  "profile": {
+    "title": "Profil",
+    "edit": "Profili Düzenle",
+    "account_info": "Hesap Bilgileri",
+    "learning_progress": "Öğrenme İlerlemesi",
+    "name": "İsim",
+    "email": "E-posta",
+    "bio": "Biyografi",
+    "avatar": "Avatar",
+    "preferred_language": "Tercih Edilen Dil",
+    "role": "Rol",
+    "level": "Seviye",
+    "topics_completed": "Tamamlanan Konu",
+    "quizzes_passed": "Geçilen Quiz",
+    "badges_earned": "Kazanılan Rozet",
+    "not_set": "Ayarlanmamış",
+    "edit_profile": {
+      "title": "Profili Düzenle",
+      "subtitle": "Kişisel bilgilerinizi ve tercihlerinizi güncelleyin",
+      "avatar_url": "Avatar URL",
+      "avatar_preview": "Önizleme:",
+      "save": "Değişiklikleri Kaydet",
+      "saving": "Kaydediliyor...",
+      "success": "Profil başarıyla güncellendi",
+      "error": "Profil güncellenemedi"
+    }
+  },
+  "admin": {
+    "title": "Yönetim Paneli",
+    "tracks": "Yollar",
+    "phases": "Aşamalar",
+    "topics": "Konular",
+    "resources": "Kaynaklar",
+    "quizzes": "Quizler",
+    "users": "Kullanıcılar",
+    "create": "Oluştur",
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "confirm_delete": "Bunu silmek istediğinizden emin misiniz?",
+    "success": "Başarılı",
+    "error": "Hata"
   }
 }

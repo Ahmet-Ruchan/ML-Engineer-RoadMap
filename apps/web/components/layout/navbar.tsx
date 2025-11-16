@@ -36,13 +36,27 @@ export function Navbar() {
               >
                 {t('nav.resources')}
               </Link>
+              <Link
+                href="/search"
+                className="text-sm font-medium hover:text-primary transition-colors"
+              >
+                {t('search.title')}
+              </Link>
               {session && (
-                <Link
-                  href="/bookmarks"
-                  className="text-sm font-medium hover:text-primary transition-colors"
-                >
-                  Bookmarks
-                </Link>
+                <>
+                  <Link
+                    href="/bookmarks"
+                    className="text-sm font-medium hover:text-primary transition-colors"
+                  >
+                    {t('bookmarks.title')}
+                  </Link>
+                  <Link
+                    href="/badges"
+                    className="text-sm font-medium hover:text-primary transition-colors"
+                  >
+                    {t('badges.title')}
+                  </Link>
+                </>
               )}
             </div>
           </div>
@@ -54,11 +68,11 @@ export function Navbar() {
               <>
                 {session.user?.role === 'admin' && (
                   <Button variant="outline" size="sm" asChild>
-                    <Link href="/admin">Admin</Link>
+                    <Link href="/admin">{t('admin.title')}</Link>
                   </Button>
                 )}
                 <Button variant="ghost" size="sm" asChild>
-                  <Link href="/profile">Profile</Link>
+                  <Link href="/profile">{t('profile.title')}</Link>
                 </Button>
                 <Button
                   variant="ghost"

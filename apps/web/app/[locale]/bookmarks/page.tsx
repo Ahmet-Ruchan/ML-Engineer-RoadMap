@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from '@/navigation'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -39,6 +39,7 @@ export default function BookmarksPage() {
   const { data: session, status } = useSession()
   const router = useRouter()
   const locale = useLocale()
+  const t = useTranslations()
   const [bookmarks, setBookmarks] = useState<Bookmark[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -89,7 +90,7 @@ export default function BookmarksPage() {
   if (status === 'loading' || loading) {
     return (
       <div className="container mx-auto px-4 py-12">
-        <div className="text-center py-20">Loading bookmarks...</div>
+        <div className="text-center py-20">{t('common.loading')}</div>
       </div>
     )
   }
@@ -107,21 +108,21 @@ export default function BookmarksPage() {
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-2">Bookmarks</h1>
+        <h1 className="text-4xl font-bold mb-2">{t('bookmarks.title')}</h1>
         <p className="text-muted-foreground mb-8">
-          Your saved topics for later study
+          {t('bookmarks.subtitle')}
         </p>
 
         {bookmarks.length === 0 ? (
           <Card>
             <CardContent className="flex flex-col items-center justify-center py-20">
               <div className="text-6xl mb-4">🔖</div>
-              <h2 className="text-2xl font-semibold mb-2">No bookmarks yet</h2>
+              <h2 className="text-2xl font-semibold mb-2">{t('bookmarks.no_bookmarks')}</h2>
               <p className="text-muted-foreground mb-6">
-                Start bookmarking topics you want to study later
+                {t('bookmarks.no_bookmarks_description')}
               </p>
               <Button asChild>
-                <Link href="/roadmap">Browse Roadmap</Link>
+                <Link href="/roadmap">{t('bookmarks.browse_roadmap')}</Link>
               </Button>
             </CardContent>
           </Card>
@@ -159,7 +160,7 @@ export default function BookmarksPage() {
                             <Link
                               href={\`/roadmap/\${bookmark.topic.phase.track.slug}/\${bookmark.topic.phase.slug}/\${bookmark.topic.slug}\`}
                             >
-                              View Topic
+                              {t('search.view_topic')}
                             </Link>
                           </Button>
                           <Button
@@ -167,7 +168,7 @@ export default function BookmarksPage() {
                             variant="outline"
                             size="sm"
                           >
-                            Remove
+                            {t('bookmarks.remove')}
                           </Button>
                         </div>
                       </div>
