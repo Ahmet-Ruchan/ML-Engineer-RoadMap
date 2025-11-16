@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import bcrypt from 'bcryptjs'
 
 const prisma = new PrismaClient()
 
@@ -7,363 +8,386 @@ async function main() {
 
   // Clean existing data (in development only)
   if (process.env.NODE_ENV !== 'production') {
-    await prisma.quiz_answer.deleteMany()
-    await prisma.quiz_attempt.deleteMany()
+    await prisma.quizAnswer.deleteMany()
+    await prisma.quizAttempt.deleteMany()
     await prisma.choice.deleteMany()
     await prisma.question.deleteMany()
     await prisma.quiz.deleteMany()
-    await prisma.progress_item.deleteMany()
+    await prisma.userBadge.deleteMany()
+    await prisma.badge.deleteMany()
+    await prisma.note.deleteMany()
     await prisma.bookmark.deleteMany()
+    await prisma.progressItem.deleteMany()
     await prisma.resource.deleteMany()
     await prisma.topic.deleteMany()
     await prisma.phase.deleteMany()
-    await prisma.profiles.deleteMany()
-    await prisma.users.deleteMany()
+    await prisma.track.deleteMany()
+    await prisma.profile.deleteMany()
+    await prisma.session.deleteMany()
+    await prisma.account.deleteMany()
+    await prisma.user.deleteMany()
     console.log('✅ Cleaned existing data')
   }
 
-  // Create sample admin user
-  const adminUser = await prisma.users.create({
+  // Create admin user
+  const hashedPassword = await bcrypt.hash('admin123', 10)
+  const adminUser = await prisma.user.create({
     data: {
       email: 'admin@ml-roadmap.com',
+      password: hashedPassword,
+      name: 'Admin User',
+      role: 'admin',
       profile: {
         create: {
-          full_name: 'Admin User',
-          role: 'admin',
+          preferredLanguage: 'en',
+          level: 10,
+          experiencePoints: 5000,
         },
       },
     },
   })
-  console.log('✅ Created admin user:', adminUser.email)
+  console.log('✅ Created admin user:', adminUser.email, '(password: admin123)')
 
-  // Create sample student user
-  const studentUser = await prisma.users.create({
+  // Create ML Engineer Track
+  const mlTrack = await prisma.track.create({
     data: {
-      email: 'student@ml-roadmap.com',
-      profile: {
-        create: {
-          full_name: 'Test Student',
-          role: 'student',
-        },
-      },
-    },
-  })
-  console.log('✅ Created student user:', studentUser.email)
-
-  // Phase 1: Python & Math Foundations
-  const phase1 = await prisma.phase.create({
-    data: {
-      title: 'Phase 1: Python & Math Foundations',
-      slug: 'phase-1-foundations',
-      description: 'Build strong fundamentals in Python programming and mathematics required for machine learning.',
+      slug: 'ml',
+      titleEn: 'Machine Learning Engineer',
+      titleTr: 'Makine Öğrenmesi Mühendisi',
+      descriptionEn: 'Complete roadmap to become a Machine Learning Engineer',
+      descriptionTr: 'Makine Öğrenmesi Mühendisi olmak için tam yol haritası',
       order: 1,
-      difficulty: 'beginner',
-      duration: 90,
-      mdx_path: 'ml/phase-1-foundations',
-      published: true,
+      isActive: true,
     },
   })
 
-  // Phase 2: Data Manipulation & Analysis
-  const phase2 = await prisma.phase.create({
+  // Create AI Track
+  const aiTrack = await prisma.track.create({
     data: {
-      title: 'Phase 2: Data Manipulation & Analysis',
-      slug: 'phase-2-data-manipulation',
-      description: 'Master data manipulation with NumPy, Pandas, and data visualization libraries.',
+      slug: 'ai',
+      titleEn: 'AI Engineer',
+      titleTr: 'Yapay Zeka Mühendisi',
+      descriptionEn: 'Become an AI Engineer with deep learning and NLP',
+      descriptionTr: 'Derin öğrenme ve NLP ile Yapay Zeka Mühendisi ol',
       order: 2,
-      difficulty: 'beginner',
-      duration: 90,
-      mdx_path: 'ml/phase-2-data-manipulation',
-      published: true,
+      isActive: true,
     },
   })
 
-  // Phase 3: Machine Learning Foundations
-  const phase3 = await prisma.phase.create({
+  // Create Data Science Track
+  const dsTrack = await prisma.track.create({
     data: {
-      title: 'Phase 3: Machine Learning Foundations',
-      slug: 'phase-3-ml-foundations',
-      description: 'Learn core machine learning algorithms and implement them using Scikit-learn.',
+      slug: 'ds',
+      titleEn: 'Data Scientist',
+      titleTr: 'Veri Bilimci',
+      descriptionEn: 'Master data science from basics to advanced',
+      descriptionTr: 'Veri biliminde temelden ileri seviyeye',
       order: 3,
-      difficulty: 'intermediate',
-      duration: 90,
-      mdx_path: 'ml/phase-3-ml-foundations',
-      published: true,
+      isActive: true,
     },
   })
 
-  console.log('✅ Created 3 phases')
+  console.log('✅ Created 3 tracks')
+
+  // ML Track - Phase 1
+  const mlPhase1 = await prisma.phase.create({
+    data: {
+      trackId: mlTrack.id,
+      slug: 'phase-1',
+      titleEn: 'Python & Math Foundations',
+      titleTr: 'Python ve Matematik Temelleri',
+      descriptionEn: 'Build strong fundamentals in Python and mathematics',
+      descriptionTr: 'Python ve matematikte güçlü temel oluştur',
+      durationMonths: 2,
+      order: 1,
+    },
+  })
+
+  // ML Track - Phase 2
+  const mlPhase2 = await prisma.phase.create({
+    data: {
+      trackId: mlTrack.id,
+      slug: 'phase-2',
+      titleEn: 'Data Analysis & Visualization',
+      titleTr: 'Veri Analizi ve Görselleştirme',
+      descriptionEn: 'Master data manipulation with NumPy, Pandas and visualization',
+      descriptionTr: 'NumPy, Pandas ve görselleştirme ile veri manipülasyonu',
+      durationMonths: 2,
+      order: 2,
+    },
+  })
+
+  // ML Track - Phase 3
+  const mlPhase3 = await prisma.phase.create({
+    data: {
+      trackId: mlTrack.id,
+      slug: 'phase-3',
+      titleEn: 'Machine Learning Algorithms',
+      titleTr: 'Makine Öğrenmesi Algoritmaları',
+      descriptionEn: 'Learn core ML algorithms with Scikit-learn',
+      descriptionTr: 'Scikit-learn ile temel ML algoritmaları',
+      durationMonths: 3,
+      order: 3,
+    },
+  })
+
+  console.log('✅ Created 3 phases for ML track')
 
   // Topics for Phase 1
-  const topic1_1 = await prisma.topic.create({
+  const topic1 = await prisma.topic.create({
     data: {
-      phase_id: phase1.id,
-      title: 'Python Basics',
+      phaseId: mlPhase1.id,
       slug: 'python-basics',
-      description: 'Learn Python fundamentals: variables, data types, control flow, and functions.',
-      mdx_path: 'ml/python-basics',
+      titleEn: 'Python Programming Basics',
+      titleTr: 'Python Programlama Temelleri',
+      descriptionEn: 'Learn Python syntax, data types, control flow, and functions',
+      descriptionTr: 'Python sözdizimi, veri tipleri, akış kontrolü ve fonksiyonlar',
+      contentEn: '# Python Programming Basics\n\nLearn the fundamentals of Python programming...',
+      contentTr: '# Python Programlama Temelleri\n\nPython programlamanın temellerini öğren...',
       order: 1,
-      estimated_time: 240,
-      published: true,
+      estimatedHours: 40,
+      difficulty: 'beginner',
     },
   })
 
-  const topic1_2 = await prisma.topic.create({
+  const topic2 = await prisma.topic.create({
     data: {
-      phase_id: phase1.id,
-      title: 'Linear Algebra',
+      phaseId: mlPhase1.id,
       slug: 'linear-algebra',
-      description: 'Understand vectors, matrices, and linear transformations essential for ML.',
-      mdx_path: 'ml/linear-algebra',
+      titleEn: 'Linear Algebra for ML',
+      titleTr: 'ML için Lineer Cebir',
+      descriptionEn: 'Vectors, matrices, and linear transformations',
+      descriptionTr: 'Vektörler, matrisler ve lineer dönüşümler',
+      contentEn: '# Linear Algebra for ML\n\nMaster the math behind machine learning...',
+      contentTr: '# ML için Lineer Cebir\n\nMakine öğrenmesinin arkasındaki matematikte uzmanlaş...',
       order: 2,
-      estimated_time: 360,
-      published: true,
+      estimatedHours: 30,
+      difficulty: 'intermediate',
     },
   })
 
-  const topic1_3 = await prisma.topic.create({
+  const topic3 = await prisma.topic.create({
     data: {
-      phase_id: phase1.id,
-      title: 'Calculus for ML',
+      phaseId: mlPhase1.id,
       slug: 'calculus',
-      description: 'Learn derivatives, gradients, and optimization concepts.',
-      mdx_path: 'ml/calculus',
+      titleEn: 'Calculus Fundamentals',
+      titleTr: 'Kalkülüs Temelleri',
+      descriptionEn: 'Derivatives, gradients, and optimization',
+      descriptionTr: 'Türevler, gradyanlar ve optimizasyon',
       order: 3,
-      estimated_time: 300,
-      published: true,
+      estimatedHours: 25,
+      difficulty: 'intermediate',
     },
   })
 
   // Topics for Phase 2
-  const topic2_1 = await prisma.topic.create({
+  const topic4 = await prisma.topic.create({
     data: {
-      phase_id: phase2.id,
-      title: 'NumPy Fundamentals',
-      slug: 'numpy-fundamentals',
-      description: 'Master NumPy arrays, operations, and numerical computing.',
-      mdx_path: 'ml/numpy-fundamentals',
+      phaseId: mlPhase2.id,
+      slug: 'numpy',
+      titleEn: 'NumPy for Data Science',
+      titleTr: 'Veri Bilimi için NumPy',
+      descriptionEn: 'Array operations, broadcasting, and linear algebra with NumPy',
+      descriptionTr: 'NumPy ile array işlemleri, broadcasting ve lineer cebir',
       order: 1,
-      estimated_time: 180,
-      published: true,
+      estimatedHours: 20,
+      difficulty: 'beginner',
     },
   })
 
-  const topic2_2 = await prisma.topic.create({
+  const topic5 = await prisma.topic.create({
     data: {
-      phase_id: phase2.id,
-      title: 'Pandas for Data Analysis',
-      slug: 'pandas-data-analysis',
-      description: 'Learn data manipulation, cleaning, and analysis with Pandas.',
-      mdx_path: 'ml/pandas-data-analysis',
+      phaseId: mlPhase2.id,
+      slug: 'pandas',
+      titleEn: 'Pandas Data Manipulation',
+      titleTr: 'Pandas Veri Manipülasyonu',
+      descriptionEn: 'DataFrames, data cleaning, and transformation',
+      descriptionTr: 'DataFrames, veri temizleme ve dönüştürme',
       order: 2,
-      estimated_time: 240,
-      published: true,
+      estimatedHours: 30,
+      difficulty: 'beginner',
+    },
+  })
+
+  const topic6 = await prisma.topic.create({
+    data: {
+      phaseId: mlPhase2.id,
+      slug: 'matplotlib',
+      titleEn: 'Data Visualization',
+      titleTr: 'Veri Görselleştirme',
+      descriptionEn: 'Create beautiful plots with Matplotlib and Seaborn',
+      descriptionTr: 'Matplotlib ve Seaborn ile güzel grafikler oluştur',
+      order: 3,
+      estimatedHours: 15,
+      difficulty: 'beginner',
     },
   })
 
   // Topics for Phase 3
-  const topic3_1 = await prisma.topic.create({
+  const topic7 = await prisma.topic.create({
     data: {
-      phase_id: phase3.id,
-      title: 'Linear Regression',
-      slug: 'linear-regression',
-      description: 'Understand and implement linear regression from scratch.',
-      mdx_path: 'ml/linear-regression',
+      phaseId: mlPhase3.id,
+      slug: 'supervised-learning',
+      titleEn: 'Supervised Learning',
+      titleTr: 'Denetimli Öğrenme',
+      descriptionEn: 'Linear regression, logistic regression, decision trees',
+      descriptionTr: 'Lineer regresyon, lojistik regresyon, karar ağaçları',
       order: 1,
-      estimated_time: 180,
-      published: true,
+      estimatedHours: 40,
+      difficulty: 'intermediate',
     },
   })
 
-  console.log('✅ Created 6 topics')
-
-  // Add resources for Python Basics
-  await prisma.resource.createMany({
-    data: [
-      {
-        topic_id: topic1_1.id,
-        title: 'Python Official Documentation',
-        description: 'Comprehensive Python documentation and tutorials.',
-        type: 'link',
-        url: 'https://docs.python.org/3/',
-        order: 1,
-        published: true,
-      },
-      {
-        topic_id: topic1_1.id,
-        title: 'Automate the Boring Stuff with Python',
-        description: 'Free online book for Python beginners.',
-        type: 'book',
-        url: 'https://automatetheboringstuff.com/',
-        order: 2,
-        published: true,
-      },
-    ],
-  })
-
-  // Add resources for Linear Algebra
-  await prisma.resource.createMany({
-    data: [
-      {
-        topic_id: topic1_2.id,
-        title: 'MIT Linear Algebra Course',
-        description: 'Gilbert Strang\'s legendary linear algebra lectures.',
-        type: 'video',
-        url: 'https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-2010/',
-        order: 1,
-        published: true,
-      },
-      {
-        topic_id: topic1_2.id,
-        title: '3Blue1Brown - Essence of Linear Algebra',
-        description: 'Visual and intuitive introduction to linear algebra.',
-        type: 'video',
-        url: 'https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab',
-        order: 2,
-        published: true,
-      },
-    ],
-  })
-
-  console.log('✅ Created sample resources')
-
-  // Create a sample quiz for Python Basics
-  const quiz1 = await prisma.quiz.create({
+  const topic8 = await prisma.topic.create({
     data: {
-      topic_id: topic1_1.id,
-      title: 'Python Basics Quiz',
-      description: 'Test your understanding of Python fundamentals.',
-      pass_score: 70,
-      time_limit: 15,
-      published: true,
+      phaseId: mlPhase3.id,
+      slug: 'unsupervised-learning',
+      titleEn: 'Unsupervised Learning',
+      titleTr: 'Denetimsiz Öğrenme',
+      descriptionEn: 'Clustering, dimensionality reduction, PCA',
+      descriptionTr: 'Kümeleme, boyut azaltma, PCA',
+      order: 2,
+      estimatedHours: 30,
+      difficulty: 'intermediate',
     },
   })
 
-  // Question 1
-  const q1 = await prisma.question.create({
+  console.log('✅ Created 8 topics')
+
+  // Resources
+  const resource1 = await prisma.resource.create({
     data: {
-      quiz_id: quiz1.id,
-      question_text: 'What is the correct way to create a variable in Python?',
-      explanation: 'In Python, you create variables by simply assigning a value with the = operator. No type declaration is needed.',
+      topicId: topic1.id,
+      type: 'course',
+      titleEn: 'Python for Everybody - Coursera',
+      titleTr: 'Herkes için Python - Coursera',
+      descriptionEn: 'Free Python course by Dr. Chuck',
+      descriptionTr: 'Dr. Chuck tarafından ücretsiz Python kursu',
+      url: 'https://www.coursera.org/specializations/python',
       order: 1,
     },
   })
 
-  await prisma.choice.createMany({
-    data: [
-      {
-        question_id: q1.id,
-        choice_text: 'x = 10',
-        is_correct: true,
-        order: 1,
-      },
-      {
-        question_id: q1.id,
-        choice_text: 'int x = 10',
-        is_correct: false,
-        order: 2,
-      },
-      {
-        question_id: q1.id,
-        choice_text: 'var x = 10',
-        is_correct: false,
-        order: 3,
-      },
-      {
-        question_id: q1.id,
-        choice_text: 'let x = 10',
-        is_correct: false,
-        order: 4,
-      },
-    ],
-  })
-
-  // Question 2
-  const q2 = await prisma.question.create({
+  const resource2 = await prisma.resource.create({
     data: {
-      quiz_id: quiz1.id,
-      question_text: 'Which data structure is ordered and changeable in Python?',
-      explanation: 'Lists are ordered, changeable, and allow duplicate values. They are one of the most commonly used data structures in Python.',
+      topicId: topic1.id,
+      type: 'book',
+      titleEn: 'Automate the Boring Stuff with Python',
+      titleTr: 'Python ile Sıkıcı İşleri Otomatikleştir',
+      author: 'Al Sweigart',
+      url: 'https://automatetheboringstuff.com/',
       order: 2,
     },
   })
 
-  await prisma.choice.createMany({
-    data: [
-      {
-        question_id: q2.id,
-        choice_text: 'Tuple',
-        is_correct: false,
-        order: 1,
-      },
-      {
-        question_id: q2.id,
-        choice_text: 'Set',
-        is_correct: false,
-        order: 2,
-      },
-      {
-        question_id: q2.id,
-        choice_text: 'List',
-        is_correct: true,
-        order: 3,
-      },
-      {
-        question_id: q2.id,
-        choice_text: 'Dictionary',
-        is_correct: false,
-        order: 4,
-      },
-    ],
-  })
-
-  console.log('✅ Created sample quiz with 2 questions')
-
-  // Create sample progress for student user
-  await prisma.progress_item.createMany({
-    data: [
-      {
-        user_id: studentUser.id,
-        topic_id: topic1_1.id,
-        status: 'completed',
-        started_at: new Date('2024-01-01'),
-        completed_at: new Date('2024-01-05'),
-      },
-      {
-        user_id: studentUser.id,
-        topic_id: topic1_2.id,
-        status: 'in_progress',
-        started_at: new Date('2024-01-06'),
-      },
-      {
-        user_id: studentUser.id,
-        topic_id: topic1_3.id,
-        status: 'planned',
-      },
-    ],
-  })
-
-  console.log('✅ Created sample progress items')
-
-  // Create sample bookmark
-  await prisma.bookmark.create({
+  const resource3 = await prisma.resource.create({
     data: {
-      user_id: studentUser.id,
-      topic_id: topic2_1.id,
+      topicId: topic5.id,
+      type: 'article',
+      titleEn: 'Pandas User Guide',
+      titleTr: 'Pandas Kullanıcı Kılavuzu',
+      url: 'https://pandas.pydata.org/docs/user_guide/index.html',
+      order: 1,
     },
   })
 
-  console.log('✅ Created sample bookmark')
+  console.log('✅ Created 3 resources')
 
-  console.log('🎉 Database seed completed successfully!')
+  // Quiz for Python Basics
+  const quiz1 = await prisma.quiz.create({
+    data: {
+      topicId: topic1.id,
+      titleEn: 'Python Basics Quiz',
+      titleTr: 'Python Temelleri Quizi',
+      descriptionEn: 'Test your Python fundamentals',
+      descriptionTr: 'Python temellerinizi test edin',
+      passingScore: 70,
+      timeLimit: 30,
+    },
+  })
+
+  const question1 = await prisma.question.create({
+    data: {
+      quizId: quiz1.id,
+      questionEn: 'What is the correct way to declare a list in Python?',
+      questionTr: 'Python\'da liste bildirmenin doğru yolu nedir?',
+      type: 'multiple_choice',
+      order: 1,
+      points: 10,
+    },
+  })
+
+  await prisma.choice.createMany({
+    data: [
+      {
+        questionId: question1.id,
+        choiceEn: 'list = ()',
+        choiceTr: 'list = ()',
+        isCorrect: false,
+        order: 1,
+      },
+      {
+        questionId: question1.id,
+        choiceEn: 'list = []',
+        choiceTr: 'list = []',
+        isCorrect: true,
+        order: 2,
+      },
+      {
+        questionId: question1.id,
+        choiceEn: 'list = {}',
+        choiceTr: 'list = {}',
+        isCorrect: false,
+        order: 3,
+      },
+    ],
+  })
+
+  console.log('✅ Created quiz with questions')
+
+  // Badges
+  const badge1 = await prisma.badge.create({
+    data: {
+      slug: 'first-topic',
+      nameEn: 'First Steps',
+      nameTr: 'İlk Adımlar',
+      descriptionEn: 'Completed your first topic',
+      descriptionTr: 'İlk konunu tamamladın',
+      criteria: JSON.stringify({ type: 'topic_completed', count: 1 }),
+      points: 10,
+    },
+  })
+
+  const badge2 = await prisma.badge.create({
+    data: {
+      slug: 'phase-complete',
+      nameEn: 'Phase Master',
+      nameTr: 'Faz Ustası',
+      descriptionEn: 'Completed an entire phase',
+      descriptionTr: 'Bir fazın tamamını bitirdin',
+      criteria: JSON.stringify({ type: 'phase_completed', count: 1 }),
+      points: 50,
+    },
+  })
+
+  console.log('✅ Created 2 badges')
+
+  console.log('\n🎉 Database seeded successfully!')
+  console.log('\n📊 Summary:')
+  console.log('- 3 Tracks (ML, AI, DS)')
+  console.log('- 3 Phases for ML Track')
+  console.log('- 8 Topics')
+  console.log('- 3 Resources')
+  console.log('- 1 Quiz with questions')
+  console.log('- 2 Badges')
+  console.log('- 1 Admin user: admin@ml-roadmap.com (password: admin123)\n')
 }
 
 main()
   .catch((e) => {
-    console.error('❌ Seed error:', e)
+    console.error('❌ Error seeding database:', e)
     process.exit(1)
   })
   .finally(async () => {
     await prisma.$disconnect()
   })
-
