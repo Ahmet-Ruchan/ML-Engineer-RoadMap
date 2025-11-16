@@ -109,7 +109,7 @@ export default function BadgesPage() {
               >
                 <CardHeader>
                   <div className="flex items-start gap-4">
-                    <div className={\`text-5xl \${isEarned ? '' : 'grayscale'}\`}>
+                    <div className={`text-5xl \${isEarned ? '' : 'grayscale'}`}>
                       {badge.icon}
                     </div>
                     <div className="flex-1">
@@ -134,7 +134,7 @@ export default function BadgesPage() {
                       <span className="font-medium">
                         {isEarned
                           ? new Date(userBadge!.earnedAt).toLocaleDateString()
-                          : \`\${completedTopics}/\${badge.requiredCount} topics\`
+                          : `\${completedTopics}/\${badge.requiredCount} topics`
                         }
                       </span>
                     </div>
@@ -142,7 +142,7 @@ export default function BadgesPage() {
                       <div className="w-full bg-muted rounded-full h-2">
                         <div
                           className="bg-primary h-2 rounded-full transition-all"
-                          style={{ width: \`\${progress}%\` }}
+                          style={{ width: `\${progress}%` }}
                         />
                       </div>
                     )}

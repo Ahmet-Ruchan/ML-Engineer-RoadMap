@@ -43,7 +43,7 @@ export default function EditQuizPage() {
 
   const fetchQuiz = async () => {
     try {
-      const res = await fetch(\`/api/admin/quizzes/\${quizId}\`)
+      const res = await fetch(`/api/admin/quizzes/\${quizId}`)
       const data = await res.json()
       if (data.success) {
         const quiz = data.data
@@ -136,7 +136,7 @@ export default function EditQuizPage() {
 
     try {
       // Update quiz basic info
-      const quizRes = await fetch(\`/api/admin/quizzes/\${quizId}\`, {
+      const quizRes = await fetch(`/api/admin/quizzes/\${quizId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -277,11 +277,11 @@ export default function EditQuizPage() {
                 <label className="block text-sm font-medium mb-3">Choices (Select the correct answer)</label>
                 <div className="space-y-3">
                   {question.choices.map((choice, cIndex) => (
-                    <div key={cIndex} className={\`p-3 border rounded \${choice.isCorrect ? 'bg-green-50 border-green-500' : ''}\`}>
+                    <div key={cIndex} className={`p-3 border rounded \${choice.isCorrect ? 'bg-green-50 border-green-500' : ''}`}>
                       <div className="flex items-start gap-2 mb-2">
                         <input
                           type="radio"
-                          name={\`correct-\${qIndex}\`}
+                          name={`correct-\${qIndex}`}
                           checked={choice.isCorrect}
                           onChange={() => updateChoice(qIndex, cIndex, 'isCorrect', true)}
                           className="mt-1"

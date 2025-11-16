@@ -29,7 +29,7 @@ export default function EditTrackPage() {
 
   const fetchTrack = async () => {
     try {
-      const res = await fetch(\`/api/admin/tracks/\${trackId}\`)
+      const res = await fetch(`/api/admin/tracks/\${trackId}`)
       const data = await res.json()
       if (data.success) {
         const track = data.data
@@ -59,7 +59,7 @@ export default function EditTrackPage() {
     setSaving(true)
 
     try {
-      const res = await fetch(\`/api/admin/tracks/\${trackId}\`, {
+      const res = await fetch(`/api/admin/tracks/\${trackId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

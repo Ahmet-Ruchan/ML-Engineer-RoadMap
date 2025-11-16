@@ -57,7 +57,7 @@ export default function EditResourcePage() {
 
   const fetchResource = async () => {
     try {
-      const res = await fetch(\`/api/admin/resources?topicId=all\`)
+      const res = await fetch(`/api/admin/resources?topicId=all`)
       const data = await res.json()
       if (data.success) {
         const resource = data.data.find((r: any) => r.id === resourceId)
@@ -88,7 +88,7 @@ export default function EditResourcePage() {
     setSaving(true)
 
     try {
-      const res = await fetch(\`/api/admin/resources/\${resourceId}\`, {
+      const res = await fetch(`/api/admin/resources/\${resourceId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

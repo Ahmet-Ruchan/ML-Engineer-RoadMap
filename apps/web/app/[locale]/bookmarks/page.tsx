@@ -158,7 +158,7 @@ export default function BookmarksPage() {
                         <div className="flex gap-2">
                           <Button asChild size="sm">
                             <Link
-                              href={\`/roadmap/\${bookmark.topic.phase.track.slug}/\${bookmark.topic.phase.slug}/\${bookmark.topic.slug}\`}
+                              href={`/roadmap/\${bookmark.topic.phase.track.slug}/\${bookmark.topic.phase.slug}/\${bookmark.topic.slug}`}
                             >
                               {t('search.view_topic')}
                             </Link>

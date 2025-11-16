@@ -47,7 +47,7 @@ export default function AdminQuizzesPage() {
     if (!confirm('Are you sure you want to delete this quiz and all its questions?')) return
 
     try {
-      const res = await fetch(\`/api/admin/quizzes/\${id}\`, {
+      const res = await fetch(`/api/admin/quizzes/\${id}`, {
         method: 'DELETE'
       })
       const data = await res.json()
@@ -98,7 +98,7 @@ export default function AdminQuizzesPage() {
                 </div>
                 <div className="flex gap-2">
                   <Button variant="outline" size="sm" asChild>
-                    <Link href={\`/admin/quizzes/\${quiz.id}/edit\`}>Edit</Link>
+                    <Link href={`/admin/quizzes/\${quiz.id}/edit`}>Edit</Link>
                   </Button>
                   <Button
                     onClick={() => deleteQuiz(quiz.id)}

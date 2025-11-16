@@ -72,7 +72,7 @@ export default function SearchPage() {
     setSearched(true)
 
     try {
-      const res = await fetch(\`/api/search?q=\${encodeURIComponent(searchQuery)}\`)
+      const res = await fetch(`/api/search?q=${encodeURIComponent(searchQuery)}`)
       const data = await res.json()
 
       if (data.success) {
@@ -89,7 +89,7 @@ export default function SearchPage() {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
     if (query.trim()) {
-      window.history.pushState({}, '', \`/search?q=\${encodeURIComponent(query)}\`)
+      window.history.pushState({}, '', `/search?q=${encodeURIComponent(query)}`)
       performSearch(query)
     }
   }
@@ -159,7 +159,7 @@ export default function SearchPage() {
                           </div>
                           <Button asChild size="sm">
                             <Link
-                              href={\`/roadmap/\${topic.phase.track.slug}/\${topic.phase.slug}/\${topic.slug}\`}
+                              href={`/roadmap/${topic.phase.track.slug}/${topic.phase.slug}/${topic.slug}`}
                             >
                               {t('search.view_topic')}
                             </Link>

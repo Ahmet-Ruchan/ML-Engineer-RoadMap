@@ -46,7 +46,7 @@ export default function AdminResourcesPage() {
     if (!confirm('Are you sure you want to delete this resource?')) return
 
     try {
-      const res = await fetch(\`/api/admin/resources/\${id}\`, {
+      const res = await fetch(`/api/admin/resources/\${id}`, {
         method: 'DELETE'
       })
       const data = await res.json()
@@ -112,7 +112,7 @@ export default function AdminResourcesPage() {
                 </div>
                 <div className="flex gap-2">
                   <Button variant="outline" size="sm" asChild>
-                    <Link href={\`/admin/resources/\${resource.id}/edit\`}>Edit</Link>
+                    <Link href={`/admin/resources/\${resource.id}/edit`}>Edit</Link>
                   </Button>
                   <Button
                     onClick={() => deleteResource(resource.id)}
