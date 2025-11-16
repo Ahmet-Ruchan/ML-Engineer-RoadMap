@@ -40,7 +40,7 @@ export function Navbar() {
                 href="/search"
                 className="text-sm font-medium hover:text-primary transition-colors"
               >
-                Search
+                {t('search.title')}
               </Link>
               {session && (
                 <>
@@ -48,13 +48,13 @@ export function Navbar() {
                     href="/bookmarks"
                     className="text-sm font-medium hover:text-primary transition-colors"
                   >
-                    Bookmarks
+                    {t('bookmarks.title')}
                   </Link>
                   <Link
                     href="/badges"
                     className="text-sm font-medium hover:text-primary transition-colors"
                   >
-                    Badges
+                    {t('badges.title')}
                   </Link>
                 </>
               )}
@@ -68,11 +68,11 @@ export function Navbar() {
               <>
                 {session.user?.role === 'admin' && (
                   <Button variant="outline" size="sm" asChild>
-                    <Link href="/admin">Admin</Link>
+                    <Link href="/admin">{t('admin.title')}</Link>
                   </Button>
                 )}
                 <Button variant="ghost" size="sm" asChild>
-                  <Link href="/profile">Profile</Link>
+                  <Link href="/profile">{t('profile.title')}</Link>
                 </Button>
                 <Button
                   variant="ghost"

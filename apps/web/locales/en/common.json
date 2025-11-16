@@ -174,5 +174,95 @@
       "description": "Join thousands of learners mastering Machine Learning and AI",
       "button": "Get Started Free"
     }
+  },
+  "search": {
+    "title": "Search",
+    "placeholder": "Search topics, resources...",
+    "button": "Search",
+    "searching": "Searching...",
+    "topics": "Topics",
+    "resources": "Resources",
+    "no_results": "No results found",
+    "no_results_description": "Try different keywords or browse the roadmap",
+    "start_searching": "Start searching",
+    "start_description": "Enter a keyword to search topics and resources",
+    "view_topic": "View Topic",
+    "view_resource": "View Resource"
+  },
+  "bookmarks": {
+    "title": "My Bookmarks",
+    "subtitle": "Your saved topics for quick access",
+    "bookmark": "Bookmark",
+    "bookmarked": "Bookmarked",
+    "remove": "Remove",
+    "no_bookmarks": "No bookmarks yet",
+    "no_bookmarks_description": "Bookmark topics to save them for later",
+    "browse_roadmap": "Browse Roadmap"
+  },
+  "badges": {
+    "title": "Badges & Achievements",
+    "subtitle": "Track your learning milestones",
+    "earned": "Earned",
+    "locked": "Locked",
+    "progress": "Progress",
+    "stats": {
+      "earned": "Badges Earned",
+      "completed": "Topics Completed",
+      "collection": "Collection"
+    },
+    "no_badges": "No badges available",
+    "complete_topics": "Complete topics to earn this badge"
+  },
+  "notes": {
+    "title": "My Notes",
+    "add": "Add Note",
+    "placeholder": "Add a note...",
+    "delete": "Delete",
+    "no_notes": "No notes yet",
+    "updated": "Updated"
+  },
+  "profile": {
+    "title": "Profile",
+    "edit": "Edit Profile",
+    "account_info": "Account Information",
+    "learning_progress": "Learning Progress",
+    "name": "Name",
+    "email": "Email",
+    "bio": "Bio",
+    "avatar": "Avatar",
+    "preferred_language": "Preferred Language",
+    "role": "Role",
+    "level": "Level",
+    "topics_completed": "Topics Completed",
+    "quizzes_passed": "Quizzes Passed",
+    "badges_earned": "Badges Earned",
+    "not_set": "Not set",
+    "edit_profile": {
+      "title": "Edit Profile",
+      "subtitle": "Update your personal information and preferences",
+      "avatar_url": "Avatar URL",
+      "avatar_preview": "Preview:",
+      "save": "Save Changes",
+      "saving": "Saving...",
+      "success": "Profile updated successfully",
+      "error": "Failed to update profile"
+    }
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "tracks": "Tracks",
+    "phases": "Phases",
+    "topics": "Topics",
+    "resources": "Resources",
+    "quizzes": "Quizzes",
+    "users": "Users",
+    "create": "Create",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm_delete": "Are you sure you want to delete this?",
+    "success": "Success",
+    "error": "Error"
   }
 }
