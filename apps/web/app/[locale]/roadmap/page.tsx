@@ -1,3 +1,5 @@
+'use client'
+
 import { useTranslations } from 'next-intl'
 import { useLocale } from 'next-intl'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
