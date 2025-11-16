@@ -65,6 +65,7 @@ export default function TopicDetailPage() {
 
   const [topic, setTopic] = useState<Topic | null>(null)
   const [progress, setProgress] = useState<string | null>(null)
+  const [bookmarked, setBookmarked] = useState(false)
   const [loading, setLoading] = useState(true)
   const [updating, setUpdating] = useState(false)
 
@@ -82,7 +83,7 @@ export default function TopicDetailPage() {
         if (topicData.success) {
           setTopic(topicData.data)
 
-          // Fetch user progress if logged in
+          // Fetch user progress and bookmarks if logged in
           if (session?.user) {
             const progressRes = await fetch('/api/progress')
             const progressData = await progressRes.json()
@@ -92,6 +93,16 @@ export default function TopicDetailPage() {
                 (p: any) => p.topicId === topicData.data.id
               )
               setProgress(topicProgress?.status || null)
+            }
+
+            // Check if bookmarked
+            const bookmarksRes = await fetch('/api/bookmarks')
+            const bookmarksData = await bookmarksRes.json()
+            if (bookmarksData.success) {
+              const isBookmarked = bookmarksData.data.some(
+                (b: any) => b.topic.id === topicData.data.id
+              )
+              setBookmarked(isBookmarked)
             }
           }
         }
@@ -144,6 +155,37 @@ export default function TopicDetailPage() {
       toast.error('Failed to update progress')
     } finally {
       setUpdating(false)
+    }
+  }
+
+  const toggleBookmark = async () => {
+    if (!session?.user || !topic) {
+      toast.error('Please log in to bookmark topics')
+      return
+    }
+
+    try {
+      const res = await fetch('/api/bookmarks', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          topicId: topic.id,
+        }),
+      })
+
+      const data = await res.json()
+
+      if (data.success) {
+        setBookmarked(data.bookmarked)
+        toast.success(data.bookmarked ? 'Bookmark added' : 'Bookmark removed')
+      } else {
+        toast.error('Failed to toggle bookmark')
+      }
+    } catch (error) {
+      console.error('Error toggling bookmark:', error)
+      toast.error('Failed to toggle bookmark')
     }
   }
 
@@ -264,7 +306,7 @@ export default function TopicDetailPage() {
 
           {/* Progress Actions */}
           {session?.user && (
-            <div className="flex gap-3">
+            <div className="flex gap-3 flex-wrap">
               {progress !== 'in_progress' && (
                 <Button
                   onClick={() => updateProgress('in_progress')}
@@ -292,6 +334,13 @@ export default function TopicDetailPage() {
                   Reset Progress
                 </Button>
               )}
+              <Button
+                onClick={toggleBookmark}
+                variant="outline"
+                className={bookmarked ? 'bg-yellow-50 border-yellow-500' : ''}
+              >
+                {bookmarked ? '🔖 Bookmarked' : '🔖 Bookmark'}
+              </Button>
             </div>
           )}
 
