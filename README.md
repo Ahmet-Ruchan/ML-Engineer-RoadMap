@@ -291,6 +291,30 @@ Whether you're a complete beginner or an experienced developer looking to pivot 
 
 ## 🚀 Getting Started
 
+### 🔧 Installation & Local Setup
+
+**Want to run this project locally?** Check out our detailed installation guide:
+
+👉 **[INSTALLATION.md](INSTALLATION.md)** - Complete step-by-step setup instructions
+
+**Quick Start:**
+```bash
+git clone https://github.com/Ahmet-Ruchan/ML-Engineer-RoadMap.git
+cd ML-Engineer-RoadMap
+pnpm install
+cd apps/web
+cp .env.example .env.local
+pnpm prisma generate
+pnpm prisma migrate dev
+pnpm dev
+```
+
+Open http://localhost:3000 in your browser!
+
+---
+
+### 📖 Learning Path
+
 ### Step 1: Assess Your Current Level
 - Complete beginner? Start with Phase 1
 - Have programming experience? Skip to Phase 2 or 3
