@@ -263,6 +263,34 @@
     "cancel": "İptal",
     "confirm_delete": "Bunu silmek istediğinizden emin misiniz?",
     "success": "Başarılı",
-    "error": "Hata"
+    "error": "Hata",
+    "users_management": {
+      "title": "Kullanıcı Yönetimi",
+      "subtitle": "Tüm kullanıcıları, rolleri ve izinleri yönetin",
+      "search_placeholder": "İsim veya e-posta ile ara...",
+      "all_roles": "Tüm Roller",
+      "regular_users": "Normal Kullanıcılar",
+      "administrators": "Yöneticiler",
+      "refresh": "Yenile",
+      "total_users": "Toplam Kullanıcı",
+      "edit_role": "Rolü Düzenle",
+      "delete_user": "Kullanıcıyı Sil",
+      "delete_confirm": "Bu kullanıcıyı silmek istediğinizden emin misiniz",
+      "delete_warning": "Bu işlem geri alınamaz.",
+      "cannot_delete_self": "Kendi hesabınızı silemezsiniz",
+      "cannot_change_own_role": "Kendi rolünüzü değiştiremezsiniz",
+      "role_updated": "Rol başarıyla güncellendi",
+      "user_deleted": "Kullanıcı başarıyla silindi",
+      "joined": "Katıldı",
+      "level": "Seviye",
+      "completed": "Tamamlandı",
+      "showing": "Gösteriliyor",
+      "of": "/",
+      "no_users": "Kullanıcı bulunamadı",
+      "loading": "Kullanıcılar yükleniyor...",
+      "page": "Sayfa",
+      "previous": "Önceki",
+      "next": "Sonraki"
+    }
   }
 }

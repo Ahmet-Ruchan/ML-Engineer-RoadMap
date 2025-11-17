@@ -263,6 +263,34 @@
     "cancel": "Cancel",
     "confirm_delete": "Are you sure you want to delete this?",
     "success": "Success",
-    "error": "Error"
+    "error": "Error",
+    "users_management": {
+      "title": "User Management",
+      "subtitle": "Manage all users, roles, and permissions",
+      "search_placeholder": "Search by name or email...",
+      "all_roles": "All Roles",
+      "regular_users": "Regular Users",
+      "administrators": "Administrators",
+      "refresh": "Refresh",
+      "total_users": "Total Users",
+      "edit_role": "Edit Role",
+      "delete_user": "Delete User",
+      "delete_confirm": "Are you sure you want to delete user",
+      "delete_warning": "This action cannot be undone.",
+      "cannot_delete_self": "Cannot delete your own account",
+      "cannot_change_own_role": "Cannot change your own role",
+      "role_updated": "Role updated successfully",
+      "user_deleted": "User deleted successfully",
+      "joined": "Joined",
+      "level": "Level",
+      "completed": "Completed",
+      "showing": "Showing",
+      "of": "of",
+      "no_users": "No users found",
+      "loading": "Loading users...",
+      "page": "Page",
+      "previous": "Previous",
+      "next": "Next"
+    }
   }
 }
