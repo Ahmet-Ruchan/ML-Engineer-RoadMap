@@ -333,6 +333,25 @@
       "error": "Failed to create topic",
       "loading": "Loading...",
       "required": "*"
+    },
+    "activity_logs": {
+      "title": "Activity Logs",
+      "subtitle": "Monitor all system activities and user actions",
+      "all_activities": "All Activities",
+      "users": "Users",
+      "topics": "Topics",
+      "progress": "Progress",
+      "resources": "Resources",
+      "quizzes": "Quizzes",
+      "badges": "Badges",
+      "recent_activity": "Recent Activity",
+      "activities_found": "activities found",
+      "no_activities": "No activities found",
+      "loading": "Loading activity logs...",
+      "user": "User",
+      "just_now": "Just now",
+      "hours_ago": "h ago",
+      "days_ago": "d ago"
     }
   }
 }

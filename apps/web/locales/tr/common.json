@@ -333,6 +333,25 @@
       "error": "Konu oluşturulamadı",
       "loading": "Yükleniyor...",
       "required": "*"
+    },
+    "activity_logs": {
+      "title": "Aktivite Günlükleri",
+      "subtitle": "Tüm sistem aktivitelerini ve kullanıcı işlemlerini izleyin",
+      "all_activities": "Tüm Aktiviteler",
+      "users": "Kullanıcılar",
+      "topics": "Konular",
+      "progress": "İlerleme",
+      "resources": "Kaynaklar",
+      "quizzes": "Quizler",
+      "badges": "Rozetler",
+      "recent_activity": "Son Aktivite",
+      "activities_found": "aktivite bulundu",
+      "no_activities": "Aktivite bulunamadı",
+      "loading": "Aktivite günlükleri yükleniyor...",
+      "user": "Kullanıcı",
+      "just_now": "Şimdi",
+      "hours_ago": "s önce",
+      "days_ago": "g önce"
     }
   }
 }
