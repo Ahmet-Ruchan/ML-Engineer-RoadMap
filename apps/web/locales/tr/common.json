@@ -1,0 +1,357 @@
+{
+  "nav": {
+    "home": "Ana Sayfa",
+    "roadmap": "Yol Haritası",
+    "dashboard": "Panel",
+    "resources": "Kaynaklar",
+    "login": "Giriş Yap",
+    "signup": "Kayıt Ol",
+    "logout": "Çıkış Yap"
+  },
+  "footer": {
+    "copyright": "© 2024 ML Engineer Roadmap. Tüm hakları saklıdır.",
+    "about": "Hakkında",
+    "contact": "İletişim",
+    "privacy": "Gizlilik Politikası",
+    "terms": "Kullanım Şartları"
+  },
+  "common": {
+    "loading": "Yükleniyor...",
+    "error": "Bir hata oluştu",
+    "success": "Başarılı",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "back": "Geri",
+    "next": "İleri",
+    "previous": "Önceki"
+  },
+  "auth": {
+    "login": {
+      "title": "Tekrar Hoş Geldiniz",
+      "subtitle": "Öğrenme yolculuğunuza devam etmek için giriş yapın",
+      "email": "E-posta",
+      "password": "Şifre",
+      "submit": "Giriş Yap",
+      "no_account": "Hesabınız yok mu?",
+      "signup_link": "Kayıt ol",
+      "error": "Geçersiz e-posta veya şifre",
+      "success": "Başarıyla giriş yapıldı"
+    },
+    "register": {
+      "title": "Hesap Oluştur",
+      "subtitle": "ML öğrenme yolculuğunuza bugün başlayın",
+      "name": "Ad Soyad",
+      "email": "E-posta",
+      "password": "Şifre",
+      "confirm_password": "Şifre Tekrar",
+      "submit": "Hesap Oluştur",
+      "have_account": "Zaten hesabınız var mı?",
+      "login_link": "Giriş yap",
+      "error": "Kayıt başarısız oldu",
+      "success": "Hesap başarıyla oluşturuldu",
+      "password_mismatch": "Şifreler eşleşmiyor",
+      "email_exists": "E-posta zaten kullanımda"
+    }
+  },
+  "dashboard": {
+    "title": "Gösterge Panelim",
+    "subtitle": "Öğrenme ilerlemenizi ve başarılarınızı takip edin",
+    "stats": {
+      "planned": "Planlandı",
+      "in_progress": "Devam Ediyor",
+      "completed": "Tamamlandı",
+      "level": "Seviye",
+      "xp": "XP",
+      "badges": "Rozet"
+    },
+    "progress": {
+      "title": "Öğrenme İlerlemesi",
+      "no_progress": "Henüz ilerleme yok. Öğrenmeye başlayın!",
+      "continue_learning": "Öğrenmeye Devam Et"
+    },
+    "badges": {
+      "title": "Son Rozetler",
+      "no_badges": "Henüz rozet kazanılmadı. Rozet kazanmak için konuları tamamlayın!",
+      "view_all": "Tüm Rozetleri Gör"
+    },
+    "activity": {
+      "title": "Son Aktiviteler",
+      "no_activity": "Henüz aktivite yok. Öğrenme yolculuğunuza başlayın!"
+    },
+    "recommendations": {
+      "title": "Sizin İçin Öneriler",
+      "start_learning": "Öğrenmeye Başla"
+    }
+  },
+  "status": {
+    "planned": "Planlandı",
+    "in_progress": "Devam Ediyor",
+    "completed": "Tamamlandı"
+  },
+  "roadmap": {
+    "title": "Öğrenme Yol Haritaları",
+    "subtitle": "Yolunuzu seçin ve ihtiyacınız olan becerilerde ustalaşın",
+    "phases": "Aşamalar",
+    "topics": "Konular",
+    "duration": "Süre",
+    "months": "ay",
+    "view_details": "Detayları Gör",
+    "start_learning": "Öğrenmeye Başla"
+  },
+  "trackDetail": {
+    "overview": "Genel Bakış",
+    "learning_path": "Öğrenme Yolu",
+    "phase": "Aşama",
+    "resources": "Kaynaklar",
+    "quiz": "Quiz",
+    "start_topic": "Konuya Başla",
+    "mark_complete": "Tamamlandı Olarak İşaretle",
+    "mark_in_progress": "Devam Ediyor Olarak İşaretle",
+    "prerequisites": "Ön Koşullar",
+    "estimated_time": "Tahmini Süre",
+    "difficulty": "Zorluk",
+    "beginner": "Başlangıç",
+    "intermediate": "Orta",
+    "advanced": "İleri",
+    "total_topics": "Toplam Konu",
+    "your_progress": "İlerlemeniz",
+    "not_started": "Başlanmadı",
+    "view_resource": "Kaynağı Görüntüle",
+    "download": "İndir",
+    "take_quiz": "Quiz'e Başla"
+  },
+  "tracks": {
+    "ml": "Makine Öğrenmesi Mühendisi",
+    "ai": "Yapay Zeka Mühendisi",
+    "cs": "Bilgisayar Bilimi",
+    "se": "Yazılım Mühendisi",
+    "ds": "Veri Bilimci"
+  },
+  "home": {
+    "hero": {
+      "title": "Kapsamlı Makine Öğrenmesi Yolculuğunuz",
+      "subtitle": "Yapılandırılmış yol haritalarıyla ML, AI, Veri Bilimi, Bilgisayar Bilimi ve Yazılım Mühendisliği'nde ustalaşın",
+      "description": "6 ayda sıfırdan zirveye. İnteraktif içerik, uygulamalı projeler ve oyunlaştırılmış öğrenme deneyimi.",
+      "cta_primary": "Öğrenmeye Başla",
+      "cta_secondary": "Yol Haritasını Gör"
+    },
+    "features": {
+      "title": "Neden Platformumuzu Seçmelisiniz?",
+      "structured": {
+        "title": "Yapılandırılmış Öğrenme Yolu",
+        "description": "Sektör uzmanları tarafından tasarlanan, sizi başlangıçtan ileri seviyeye taşıyan 6 aşamalı kapsamlı yol haritası"
+      },
+      "multilingual": {
+        "title": "İki Dilli İçerik",
+        "description": "Tam İngilizce ve Türkçe desteğiyle tercih ettiğiniz dilde öğrenin"
+      },
+      "interactive": {
+        "title": "İnteraktif İçerik",
+        "description": "MDX destekli içerik, quizler ve uygulamalı egzersizlerle etkileşimli öğrenin"
+      },
+      "progress": {
+        "title": "İlerlemenizi Takip Edin",
+        "description": "Detaylı ilerleme takibi ve analizlerle öğrenme yolculuğunuzu izleyin"
+      },
+      "gamification": {
+        "title": "Oyunlaştırılmış Deneyim",
+        "description": "Rozetler kazanın, seviye atlayın ve motivasyonunuzu korumak için kendinizle yarışın"
+      },
+      "resources": {
+        "title": "Zengin Kaynaklar",
+        "description": "Özenle seçilmiş PDF'ler, videolar, makaleler ve uygulamalı projelere erişin"
+      }
+    },
+    "tracks": {
+      "title": "Yolunuzu Seçin",
+      "subtitle": "Kariyer hedeflerinize uygun öğrenme yolunu seçin",
+      "view_all": "Tüm Yolları Gör"
+    },
+    "cta": {
+      "title": "Yolculuğunuza Başlamaya Hazır mısınız?",
+      "description": "Makine Öğrenmesi ve AI'da ustalaşan binlerce öğrenciye katılın",
+      "button": "Ücretsiz Başla"
+    }
+  },
+  "search": {
+    "title": "Ara",
+    "placeholder": "Konu, kaynak ara...",
+    "button": "Ara",
+    "searching": "Aranıyor...",
+    "topics": "Konular",
+    "resources": "Kaynaklar",
+    "no_results": "Sonuç bulunamadı",
+    "no_results_description": "Farklı anahtar kelimeler deneyin veya yol haritasına göz atın",
+    "start_searching": "Aramaya başlayın",
+    "start_description": "Konu ve kaynakları aramak için bir anahtar kelime girin",
+    "view_topic": "Konuyu Görüntüle",
+    "view_resource": "Kaynağı Görüntüle"
+  },
+  "bookmarks": {
+    "title": "Yer İşaretlerim",
+    "subtitle": "Hızlı erişim için kaydettiğiniz konular",
+    "bookmark": "Yer İşareti",
+    "bookmarked": "Yer İşaretlendi",
+    "remove": "Kaldır",
+    "no_bookmarks": "Henüz yer işareti yok",
+    "no_bookmarks_description": "Konuları daha sonra için yer işaretleyin",
+    "browse_roadmap": "Yol Haritasına Göz At"
+  },
+  "badges": {
+    "title": "Rozetler ve Başarılar",
+    "subtitle": "Öğrenme dönüm noktalarınızı takip edin",
+    "earned": "Kazanıldı",
+    "locked": "Kilitli",
+    "progress": "İlerleme",
+    "stats": {
+      "earned": "Kazanılan Rozet",
+      "completed": "Tamamlanan Konu",
+      "collection": "Koleksiyon"
+    },
+    "no_badges": "Henüz rozet yok",
+    "complete_topics": "Bu rozeti kazanmak için konuları tamamlayın"
+  },
+  "notes": {
+    "title": "Notlarım",
+    "add": "Not Ekle",
+    "placeholder": "Bir not ekleyin...",
+    "delete": "Sil",
+    "no_notes": "Henüz not yok",
+    "updated": "Güncellendi"
+  },
+  "profile": {
+    "title": "Profil",
+    "edit": "Profili Düzenle",
+    "account_info": "Hesap Bilgileri",
+    "learning_progress": "Öğrenme İlerlemesi",
+    "name": "İsim",
+    "email": "E-posta",
+    "bio": "Biyografi",
+    "avatar": "Avatar",
+    "preferred_language": "Tercih Edilen Dil",
+    "role": "Rol",
+    "level": "Seviye",
+    "topics_completed": "Tamamlanan Konu",
+    "quizzes_passed": "Geçilen Quiz",
+    "badges_earned": "Kazanılan Rozet",
+    "not_set": "Ayarlanmamış",
+    "edit_profile": {
+      "title": "Profili Düzenle",
+      "subtitle": "Kişisel bilgilerinizi ve tercihlerinizi güncelleyin",
+      "avatar_url": "Avatar URL",
+      "avatar_preview": "Önizleme:",
+      "save": "Değişiklikleri Kaydet",
+      "saving": "Kaydediliyor...",
+      "success": "Profil başarıyla güncellendi",
+      "error": "Profil güncellenemedi"
+    }
+  },
+  "admin": {
+    "title": "Yönetim Paneli",
+    "tracks": "Yollar",
+    "phases": "Aşamalar",
+    "topics": "Konular",
+    "resources": "Kaynaklar",
+    "quizzes": "Quizler",
+    "users": "Kullanıcılar",
+    "create": "Oluştur",
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "confirm_delete": "Bunu silmek istediğinizden emin misiniz?",
+    "success": "Başarılı",
+    "error": "Hata",
+    "users_management": {
+      "title": "Kullanıcı Yönetimi",
+      "subtitle": "Tüm kullanıcıları, rolleri ve izinleri yönetin",
+      "search_placeholder": "İsim veya e-posta ile ara...",
+      "all_roles": "Tüm Roller",
+      "regular_users": "Normal Kullanıcılar",
+      "administrators": "Yöneticiler",
+      "refresh": "Yenile",
+      "total_users": "Toplam Kullanıcı",
+      "edit_role": "Rolü Düzenle",
+      "delete_user": "Kullanıcıyı Sil",
+      "delete_confirm": "Bu kullanıcıyı silmek istediğinizden emin misiniz",
+      "delete_warning": "Bu işlem geri alınamaz.",
+      "cannot_delete_self": "Kendi hesabınızı silemezsiniz",
+      "cannot_change_own_role": "Kendi rolünüzü değiştiremezsiniz",
+      "role_updated": "Rol başarıyla güncellendi",
+      "user_deleted": "Kullanıcı başarıyla silindi",
+      "joined": "Katıldı",
+      "level": "Seviye",
+      "completed": "Tamamlandı",
+      "showing": "Gösteriliyor",
+      "of": "/",
+      "no_users": "Kullanıcı bulunamadı",
+      "loading": "Kullanıcılar yükleniyor...",
+      "page": "Sayfa",
+      "previous": "Önceki",
+      "next": "Sonraki"
+    },
+    "topic_create": {
+      "title": "Yeni Konu Oluştur",
+      "subtitle": "Bir aşamaya yeni öğrenme konusu ekleyin",
+      "back_to_topics": "Konulara Dön",
+      "topic_info": "Konu Bilgileri",
+      "fill_details": "Yeni konu için detayları doldurun",
+      "select_track": "Yol Seçin",
+      "select_phase": "Aşama Seçin",
+      "select_track_first": "Lütfen önce bir yol seçin",
+      "select_track_placeholder": "-- Bir Yol Seçin --",
+      "select_phase_placeholder": "-- Bir Aşama Seçin --",
+      "slug": "Slug",
+      "slug_placeholder": "örn., dogrusal-regresyon",
+      "slug_helper": "URL dostu tanımlayıcı (küçük harf, yalnızca tire)",
+      "title_en": "Başlık (İngilizce)",
+      "title_en_placeholder": "örn., Linear Regression",
+      "title_tr": "Başlık (Türkçe)",
+      "title_tr_placeholder": "örn., Doğrusal Regresyon",
+      "description_en": "Açıklama (İngilizce)",
+      "description_en_placeholder": "İngilizce kısa açıklama...",
+      "description_tr": "Açıklama (Türkçe)",
+      "description_tr_placeholder": "Türkçe kısa açıklama...",
+      "content_en": "İçerik (İngilizce) - MDX",
+      "content_en_placeholder": "İngilizce tam MDX içeriği...",
+      "content_tr": "İçerik (Türkçe) - MDX",
+      "content_tr_placeholder": "Türkçe MDX içeriği...",
+      "mdx_helper": "Markdown ve React bileşenleri ile MDX formatında içerik",
+      "difficulty": "Zorluk Seviyesi",
+      "difficulty_placeholder": "-- Zorluk Seçin --",
+      "estimated_hours": "Tahmini Saat",
+      "estimated_hours_placeholder": "örn., 8",
+      "estimated_hours_helper": "Bu konuyu tamamlamak için tahmini süre (saat cinsinden)",
+      "order": "Sıra",
+      "order_placeholder": "0",
+      "order_helper": "Aşama içindeki görüntüleme sırası (0 = ilk)",
+      "creating": "Oluşturuluyor...",
+      "create_button": "Konu Oluştur",
+      "success": "Konu başarıyla oluşturuldu!",
+      "error": "Konu oluşturulamadı",
+      "loading": "Yükleniyor...",
+      "required": "*"
+    },
+    "activity_logs": {
+      "title": "Aktivite Günlükleri",
+      "subtitle": "Tüm sistem aktivitelerini ve kullanıcı işlemlerini izleyin",
+      "all_activities": "Tüm Aktiviteler",
+      "users": "Kullanıcılar",
+      "topics": "Konular",
+      "progress": "İlerleme",
+      "resources": "Kaynaklar",
+      "quizzes": "Quizler",
+      "badges": "Rozetler",
+      "recent_activity": "Son Aktivite",
+      "activities_found": "aktivite bulundu",
+      "no_activities": "Aktivite bulunamadı",
+      "loading": "Aktivite günlükleri yükleniyor...",
+      "user": "Kullanıcı",
+      "just_now": "Şimdi",
+      "hours_ago": "s önce",
+      "days_ago": "g önce"
+    }
+  }
+}

@@ -1,0 +1,357 @@
+{
+  "nav": {
+    "home": "Home",
+    "roadmap": "Roadmap",
+    "dashboard": "Dashboard",
+    "resources": "Resources",
+    "login": "Login",
+    "signup": "Sign Up",
+    "logout": "Logout"
+  },
+  "footer": {
+    "copyright": "© 2024 ML Engineer Roadmap. All rights reserved.",
+    "about": "About",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous"
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome Back",
+      "subtitle": "Sign in to continue your learning journey",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign In",
+      "no_account": "Don't have an account?",
+      "signup_link": "Sign up",
+      "error": "Invalid email or password",
+      "success": "Successfully logged in"
+    },
+    "register": {
+      "title": "Create Account",
+      "subtitle": "Start your ML learning journey today",
+      "name": "Full Name",
+      "email": "Email",
+      "password": "Password",
+      "confirm_password": "Confirm Password",
+      "submit": "Create Account",
+      "have_account": "Already have an account?",
+      "login_link": "Sign in",
+      "error": "Registration failed",
+      "success": "Account created successfully",
+      "password_mismatch": "Passwords do not match",
+      "email_exists": "Email already in use"
+    }
+  },
+  "dashboard": {
+    "title": "My Dashboard",
+    "subtitle": "Track your learning progress and achievements",
+    "stats": {
+      "planned": "Planned",
+      "in_progress": "In Progress",
+      "completed": "Completed",
+      "level": "Level",
+      "xp": "XP",
+      "badges": "Badges"
+    },
+    "progress": {
+      "title": "Learning Progress",
+      "no_progress": "No progress yet. Start learning!",
+      "continue_learning": "Continue Learning"
+    },
+    "badges": {
+      "title": "Recent Badges",
+      "no_badges": "No badges earned yet. Complete topics to earn badges!",
+      "view_all": "View All Badges"
+    },
+    "activity": {
+      "title": "Recent Activity",
+      "no_activity": "No activities yet. Start your learning journey!"
+    },
+    "recommendations": {
+      "title": "Recommended for You",
+      "start_learning": "Start Learning"
+    }
+  },
+  "status": {
+    "planned": "Planned",
+    "in_progress": "In Progress",
+    "completed": "Completed"
+  },
+  "roadmap": {
+    "title": "Learning Roadmaps",
+    "subtitle": "Choose your path and master the skills you need",
+    "phases": "Phases",
+    "topics": "Topics",
+    "duration": "Duration",
+    "months": "months",
+    "view_details": "View Details",
+    "start_learning": "Start Learning"
+  },
+  "trackDetail": {
+    "overview": "Overview",
+    "learning_path": "Learning Path",
+    "phase": "Phase",
+    "resources": "Resources",
+    "quiz": "Quiz",
+    "start_topic": "Start Topic",
+    "mark_complete": "Mark as Complete",
+    "mark_in_progress": "Mark In Progress",
+    "prerequisites": "Prerequisites",
+    "estimated_time": "Estimated Time",
+    "difficulty": "Difficulty",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "total_topics": "Total Topics",
+    "your_progress": "Your Progress",
+    "not_started": "Not Started",
+    "view_resource": "View Resource",
+    "download": "Download",
+    "take_quiz": "Take Quiz"
+  },
+  "tracks": {
+    "ml": "Machine Learning Engineer",
+    "ai": "AI Engineer",
+    "cs": "Computer Science",
+    "se": "Software Engineer",
+    "ds": "Data Scientist"
+  },
+  "home": {
+    "hero": {
+      "title": "Your Complete Machine Learning Journey",
+      "subtitle": "Master ML, AI, Data Science, Computer Science, and Software Engineering with structured roadmaps",
+      "description": "From zero to hero in 6 months. Interactive content, hands-on projects, and gamified learning experience.",
+      "cta_primary": "Start Learning",
+      "cta_secondary": "View Roadmap"
+    },
+    "features": {
+      "title": "Why Choose Our Platform?",
+      "structured": {
+        "title": "Structured Learning Path",
+        "description": "6-phase comprehensive roadmap designed by industry experts, taking you from beginner to advanced"
+      },
+      "multilingual": {
+        "title": "Bilingual Content",
+        "description": "Learn in your preferred language with full English and Turkish support"
+      },
+      "interactive": {
+        "title": "Interactive Content",
+        "description": "Engage with MDX-powered content, quizzes, and hands-on exercises"
+      },
+      "progress": {
+        "title": "Track Your Progress",
+        "description": "Monitor your learning journey with detailed progress tracking and analytics"
+      },
+      "gamification": {
+        "title": "Gamified Experience",
+        "description": "Earn badges, level up, and compete with yourself to stay motivated"
+      },
+      "resources": {
+        "title": "Rich Resources",
+        "description": "Access curated PDFs, videos, articles, and hands-on projects"
+      }
+    },
+    "tracks": {
+      "title": "Choose Your Track",
+      "subtitle": "Select the learning path that matches your career goals",
+      "view_all": "View All Tracks"
+    },
+    "cta": {
+      "title": "Ready to Start Your Journey?",
+      "description": "Join thousands of learners mastering Machine Learning and AI",
+      "button": "Get Started Free"
+    }
+  },
+  "search": {
+    "title": "Search",
+    "placeholder": "Search topics, resources...",
+    "button": "Search",
+    "searching": "Searching...",
+    "topics": "Topics",
+    "resources": "Resources",
+    "no_results": "No results found",
+    "no_results_description": "Try different keywords or browse the roadmap",
+    "start_searching": "Start searching",
+    "start_description": "Enter a keyword to search topics and resources",
+    "view_topic": "View Topic",
+    "view_resource": "View Resource"
+  },
+  "bookmarks": {
+    "title": "My Bookmarks",
+    "subtitle": "Your saved topics for quick access",
+    "bookmark": "Bookmark",
+    "bookmarked": "Bookmarked",
+    "remove": "Remove",
+    "no_bookmarks": "No bookmarks yet",
+    "no_bookmarks_description": "Bookmark topics to save them for later",
+    "browse_roadmap": "Browse Roadmap"
+  },
+  "badges": {
+    "title": "Badges & Achievements",
+    "subtitle": "Track your learning milestones",
+    "earned": "Earned",
+    "locked": "Locked",
+    "progress": "Progress",
+    "stats": {
+      "earned": "Badges Earned",
+      "completed": "Topics Completed",
+      "collection": "Collection"
+    },
+    "no_badges": "No badges available",
+    "complete_topics": "Complete topics to earn this badge"
+  },
+  "notes": {
+    "title": "My Notes",
+    "add": "Add Note",
+    "placeholder": "Add a note...",
+    "delete": "Delete",
+    "no_notes": "No notes yet",
+    "updated": "Updated"
+  },
+  "profile": {
+    "title": "Profile",
+    "edit": "Edit Profile",
+    "account_info": "Account Information",
+    "learning_progress": "Learning Progress",
+    "name": "Name",
+    "email": "Email",
+    "bio": "Bio",
+    "avatar": "Avatar",
+    "preferred_language": "Preferred Language",
+    "role": "Role",
+    "level": "Level",
+    "topics_completed": "Topics Completed",
+    "quizzes_passed": "Quizzes Passed",
+    "badges_earned": "Badges Earned",
+    "not_set": "Not set",
+    "edit_profile": {
+      "title": "Edit Profile",
+      "subtitle": "Update your personal information and preferences",
+      "avatar_url": "Avatar URL",
+      "avatar_preview": "Preview:",
+      "save": "Save Changes",
+      "saving": "Saving...",
+      "success": "Profile updated successfully",
+      "error": "Failed to update profile"
+    }
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "tracks": "Tracks",
+    "phases": "Phases",
+    "topics": "Topics",
+    "resources": "Resources",
+    "quizzes": "Quizzes",
+    "users": "Users",
+    "create": "Create",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm_delete": "Are you sure you want to delete this?",
+    "success": "Success",
+    "error": "Error",
+    "users_management": {
+      "title": "User Management",
+      "subtitle": "Manage all users, roles, and permissions",
+      "search_placeholder": "Search by name or email...",
+      "all_roles": "All Roles",
+      "regular_users": "Regular Users",
+      "administrators": "Administrators",
+      "refresh": "Refresh",
+      "total_users": "Total Users",
+      "edit_role": "Edit Role",
+      "delete_user": "Delete User",
+      "delete_confirm": "Are you sure you want to delete user",
+      "delete_warning": "This action cannot be undone.",
+      "cannot_delete_self": "Cannot delete your own account",
+      "cannot_change_own_role": "Cannot change your own role",
+      "role_updated": "Role updated successfully",
+      "user_deleted": "User deleted successfully",
+      "joined": "Joined",
+      "level": "Level",
+      "completed": "Completed",
+      "showing": "Showing",
+      "of": "of",
+      "no_users": "No users found",
+      "loading": "Loading users...",
+      "page": "Page",
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "topic_create": {
+      "title": "Create New Topic",
+      "subtitle": "Add a new learning topic to a phase",
+      "back_to_topics": "Back to Topics",
+      "topic_info": "Topic Information",
+      "fill_details": "Fill in the details for the new topic",
+      "select_track": "Select Track",
+      "select_phase": "Select Phase",
+      "select_track_first": "Please select a track first",
+      "select_track_placeholder": "-- Select a Track --",
+      "select_phase_placeholder": "-- Select a Phase --",
+      "slug": "Slug",
+      "slug_placeholder": "e.g., linear-regression",
+      "slug_helper": "URL-friendly identifier (lowercase, hyphens only)",
+      "title_en": "Title (English)",
+      "title_en_placeholder": "e.g., Linear Regression",
+      "title_tr": "Title (Turkish)",
+      "title_tr_placeholder": "e.g., Doğrusal Regresyon",
+      "description_en": "Description (English)",
+      "description_en_placeholder": "Brief description in English...",
+      "description_tr": "Description (Turkish)",
+      "description_tr_placeholder": "Türkçe kısa açıklama...",
+      "content_en": "Content (English) - MDX",
+      "content_en_placeholder": "Full MDX content in English...",
+      "content_tr": "Content (Turkish) - MDX",
+      "content_tr_placeholder": "Türkçe MDX içeriği...",
+      "mdx_helper": "MDX-formatted content with markdown and React components",
+      "difficulty": "Difficulty Level",
+      "difficulty_placeholder": "-- Select Difficulty --",
+      "estimated_hours": "Estimated Hours",
+      "estimated_hours_placeholder": "e.g., 8",
+      "estimated_hours_helper": "Estimated time to complete this topic (in hours)",
+      "order": "Order",
+      "order_placeholder": "0",
+      "order_helper": "Display order within the phase (0 = first)",
+      "creating": "Creating...",
+      "create_button": "Create Topic",
+      "success": "Topic created successfully!",
+      "error": "Failed to create topic",
+      "loading": "Loading...",
+      "required": "*"
+    },
+    "activity_logs": {
+      "title": "Activity Logs",
+      "subtitle": "Monitor all system activities and user actions",
+      "all_activities": "All Activities",
+      "users": "Users",
+      "topics": "Topics",
+      "progress": "Progress",
+      "resources": "Resources",
+      "quizzes": "Quizzes",
+      "badges": "Badges",
+      "recent_activity": "Recent Activity",
+      "activities_found": "activities found",
+      "no_activities": "No activities found",
+      "loading": "Loading activity logs...",
+      "user": "User",
+      "just_now": "Just now",
+      "hours_ago": "h ago",
+      "days_ago": "d ago"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+// Backup of PostgreSQL schema
+// Use this when deploying to production with Supabase
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}

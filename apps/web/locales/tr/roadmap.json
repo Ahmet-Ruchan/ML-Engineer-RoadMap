@@ -1,0 +1,24 @@
+{
+  "title": "ML Mühendisi Yol Haritası",
+  "subtitle": "Makine Öğrenmesi ve Yapay Zeka alanında uzmanlaşmak için kapsamlı rehberiniz",
+  "tracks": {
+    "ml": "Makine Öğrenmesi Mühendisi",
+    "ai": "Yapay Zeka Mühendisi",
+    "cs": "Bilgisayar Mühendisliği",
+    "se": "Yazılım Mühendisi",
+    "ds": "Veri Bilimci"
+  },
+  "phases": {
+    "phase1": "Faz 1: Temel",
+    "phase2": "Faz 2: Veri Manipülasyonu",
+    "phase3": "Faz 3: ML Temelleri",
+    "phase4": "Faz 4: Derin Öğrenme",
+    "phase5": "Faz 5: Uzmanlaşma",
+    "phase6": "Faz 6: İleri Konular"
+  },
+  "status": {
+    "planned": "Planlandı",
+    "in_progress": "Devam Ediyor",
+    "completed": "Tamamlandı"
+  }
+}

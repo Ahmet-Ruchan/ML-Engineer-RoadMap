@@ -1,0 +1,374 @@
+// Prisma Schema for ML Engineer Roadmap
+// Using SQLite for local development
+// Switch to PostgreSQL (Supabase) for production
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// USER MANAGEMENT
+// ============================================
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  password      String?   // For credentials auth
+  name          String?
+  image         String?
+  emailVerified DateTime?
+  role          String    @default("user") // user, admin
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  profile       Profile?
+  progressItems ProgressItem[]
+  bookmarks     Bookmark[]
+  quizAttempts  QuizAttempt[]
+  userBadges    UserBadge[]
+  notes         Note[]
+  accounts      Account[]
+  sessions      Session[]
+
+  @@map("users")
+}
+
+model Account {
+  id                String  @id @default(uuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(uuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+model Profile {
+  id              String   @id @default(uuid())
+  userId          String   @unique
+  bio             String?
+  level           Int      @default(1)
+  experiencePoints Int     @default(0)
+  preferredLanguage String @default("en")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("profiles")
+}
+
+// ============================================
+// ROADMAP STRUCTURE
+// ============================================
+
+model Track {
+  id          String   @id @default(uuid())
+  slug        String   @unique // ml, ai, cs, se, ds
+  titleEn     String
+  titleTr     String
+  descriptionEn String?
+  descriptionTr String?
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  phases Phase[]
+
+  @@map("tracks")
+}
+
+model Phase {
+  id          String   @id @default(uuid())
+  trackId     String
+  slug        String   // phase-1, phase-2
+  titleEn     String
+  titleTr     String
+  descriptionEn String?
+  descriptionTr String?
+  durationMonths Int   @default(3)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  track  Track   @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  topics Topic[]
+
+  @@unique([trackId, slug])
+  @@map("phases")
+}
+
+model Topic {
+  id          String   @id @default(uuid())
+  phaseId     String
+  slug        String
+  titleEn     String
+  titleTr     String
+  descriptionEn String?
+  descriptionTr String?
+  contentEn   String?  // MDX content
+  contentTr   String?  // MDX content
+  order       Int      @default(0)
+  estimatedHours Int?
+  difficulty  String?  // beginner, intermediate, advanced
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  phase         Phase          @relation(fields: [phaseId], references: [id], onDelete: Cascade)
+  resources     Resource[]
+  progressItems ProgressItem[]
+  quizzes       Quiz[]
+
+  @@unique([phaseId, slug])
+  @@map("topics")
+}
+
+model Resource {
+  id          String   @id @default(uuid())
+  topicId     String
+  type        String   // book, course, video, article, pdf, link
+  titleEn     String
+  titleTr     String?
+  descriptionEn String?
+  descriptionTr String?
+  url         String?
+  fileUrl     String?  // Supabase Storage URL for PDFs
+  author      String?
+  isPremium   Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  topic     Topic      @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  bookmarks Bookmark[]
+
+  @@map("resources")
+}
+
+// ============================================
+// PROGRESS TRACKING
+// ============================================
+
+model ProgressItem {
+  id          String   @id @default(uuid())
+  userId      String
+  topicId     String
+  status      String   @default("planned") // planned, in_progress, completed
+  completedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  topic Topic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, topicId])
+  @@map("progress_items")
+}
+
+model Bookmark {
+  id         String   @id @default(uuid())
+  userId     String
+  resourceId String
+  note       String?
+  createdAt  DateTime @default(now())
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  resource Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, resourceId])
+  @@map("bookmarks")
+}
+
+model Note {
+  id        String   @id @default(uuid())
+  userId    String
+  title     String
+  content   String   // Rich text / Markdown
+  tags      String?  // JSON string of tags array (for SQLite compatibility)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("notes")
+}
+
+// ============================================
+// QUIZ SYSTEM
+// ============================================
+
+model Quiz {
+  id          String   @id @default(uuid())
+  topicId     String
+  titleEn     String
+  titleTr     String?
+  descriptionEn String?
+  descriptionTr String?
+  passingScore Int     @default(70)
+  timeLimit   Int?     // in minutes
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  topic     Topic         @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  questions Question[]
+  attempts  QuizAttempt[]
+
+  @@map("quizzes")
+}
+
+model Question {
+  id          String   @id @default(uuid())
+  quizId      String
+  questionEn  String
+  questionTr  String?
+  type        String   @default("multiple_choice") // multiple_choice, true_false
+  order       Int      @default(0)
+  points      Int      @default(1)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  quiz    Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  choices Choice[]
+  answers QuizAnswer[]
+
+  @@map("questions")
+}
+
+model Choice {
+  id         String   @id @default(uuid())
+  questionId String
+  choiceEn   String
+  choiceTr   String?
+  isCorrect  Boolean  @default(false)
+  order      Int      @default(0)
+  createdAt  DateTime @default(now())
+
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@map("choices")
+}
+
+model QuizAttempt {
+  id          String   @id @default(uuid())
+  userId      String
+  quizId      String
+  score       Int      @default(0)
+  totalPoints Int      @default(0)
+  passed      Boolean  @default(false)
+  startedAt   DateTime @default(now())
+  completedAt DateTime?
+
+  user    User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quiz    Quiz         @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  answers QuizAnswer[]
+
+  @@map("quiz_attempts")
+}
+
+model QuizAnswer {
+  id          String   @id @default(uuid())
+  attemptId   String
+  questionId  String
+  choiceId    String?  // null for text answers
+  answerText  String?
+  isCorrect   Boolean  @default(false)
+  pointsEarned Int     @default(0)
+  createdAt   DateTime @default(now())
+
+  attempt  QuizAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  question Question    @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@map("quiz_answers")
+}
+
+// ============================================
+// GAMIFICATION
+// ============================================
+
+model Badge {
+  id          String   @id @default(uuid())
+  slug        String   @unique
+  nameEn      String
+  nameTr      String?
+  descriptionEn String?
+  descriptionTr String?
+  iconUrl     String?
+  criteria    String   // JSON string with criteria
+  points      Int      @default(10)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  userBadges UserBadge[]
+
+  @@map("badges")
+}
+
+model UserBadge {
+  id        String   @id @default(uuid())
+  userId    String
+  badgeId   String
+  earnedAt  DateTime @default(now())
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  badge Badge @relation(fields: [badgeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, badgeId])
+  @@map("user_badges")
+}
+
+// ============================================
+// ADMIN & CONTENT MANAGEMENT
+// ============================================
+
+model ActivityLog {
+  id        String   @id @default(uuid())
+  userId    String?
+  action    String   // login, quiz_completed, topic_completed, etc.
+  entityType String? // quiz, topic, resource
+  entityId  String?
+  metadata  String?  // JSON string
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([createdAt])
+  @@map("activity_logs")
+}
